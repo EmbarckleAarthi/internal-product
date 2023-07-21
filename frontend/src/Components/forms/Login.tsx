@@ -56,7 +56,7 @@ export const Login = () => {
 
         <div>
           <button type="submit" id="submit">
-            Sign
+            Sign In
           </button>
         </div>
       </form>

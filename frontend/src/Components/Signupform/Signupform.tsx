@@ -2,7 +2,7 @@ import "./style.scss";
 
 import axios from "axios";
 import React, { useState } from "react";
-import {AuthControlller} from '../../../../backend/src/controllers/AuthController';
+
 import { INewUser } from "../../../../common/interface";
 
 export const Signupform: React.FC = () => {

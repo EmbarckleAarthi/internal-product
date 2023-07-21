@@ -1,11 +1,20 @@
-import { UserService } from "../services/UserService";
+import { db } from "../../index";
 
-export class AuthController {
-    public async signup(Userdata):Promise(
-        const existinguser = await UserService.findbyMail(Userdata.email);
-        if(existinguser){
-            console.log('user exixts already')
+export const userlogin = () => {
+  return "user route created successfully";
+};
+
+export const finduser = async (data: any) => {
+  return new Promise((resolve, reject) => {
+    db.query(
+      `SELECT * FROM users where email="${data.email}"`,
+      (err, result) => {
+        if (err) {
+          reject(err);
+        } else {
+          resolve(result[0]);
         }
-        UserService.createUser(Userdata);
-    )
-}
+      }
+    );
+  });
+};

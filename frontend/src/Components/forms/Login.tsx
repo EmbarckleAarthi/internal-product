@@ -48,6 +48,11 @@ export const Login = () => {
             Forgot password?
           </a>
         </div>
+        <div className="sign-up">
+          <a href="http://localhost:1234/signupform" id="signup">
+            Don't have an account? Click here.
+          </a>
+        </div>
 
         <div>
           <button type="submit" id="submit">

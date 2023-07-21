@@ -46,8 +46,8 @@ html {
       position: absolute;
     }
     #submit {
-      margin-bottom: 50px;
-      margin-top: 50px;
+      margin-bottom: 30px;
+      margin-top: 30px;
       background-color: rgb(129, 59, 194);
       color: white;
       border-radius: 5px;
@@ -70,6 +70,13 @@ html {
       border-radius: 5px;
       width: 30%;
       margin-bottom: 50px;
+    }
+    .sign-up {
+      margin-top: 30px;
+      font-size: small;
+      #signup {
+        color: rgb(129, 59, 194);
+      }
     }
   }
 }

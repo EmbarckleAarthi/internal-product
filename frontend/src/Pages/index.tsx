@@ -13,5 +13,5 @@ export const Pages: React.FC = () => {
       <Route path="/forgotpassword" element={<Forgotpassword />} />
       <Route path="/resetpassword" element={<Resetpassword />} />
     </Routes>
-    );
-}
+  );
+};

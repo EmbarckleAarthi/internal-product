@@ -1,8 +1,6 @@
 import React from "react";
-import { BrowserRouter, Route, Routes } from "react-router-dom";
-import App from "src/App";
+import { Route, Routes } from "react-router-dom";
 import { Forgotpassword } from "src/components/forms/Forgotpassword";
-import { Login } from "src/components/forms/Login";
 import { Resetpassword } from "src/components/forms/Resetpassword";
 import { Loginpages } from "./Loginpages";
 

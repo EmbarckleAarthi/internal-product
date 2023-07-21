@@ -1,0 +1,75 @@
+html {
+  background-color: white;
+  text-align: center;
+  .container {
+    text-align: center;
+    height: 50em;
+    width: 50em;
+    margin: auto;
+  }
+  form {
+    border: 2px solid rgb(250, 246, 246);
+    border-radius: 10px;
+    background-color: rgb(250, 246, 246);
+    box-shadow: 5px 5px 5px 5px grey;
+    text-align: center;
+    margin-left: 25%;
+    margin-right: 25%;
+    margin-top: 15%;
+    #forgotpass {
+      margin-top: 50px;
+      width: 325px;
+      border-radius: 5px;
+    }
+    #submit-pass {
+      margin-bottom: 50px;
+      margin-top: 50px;
+      background-color: rgb(129, 59, 194);
+      color: white;
+      border-radius: 5px;
+      width: 30%;
+    }
+    #username {
+      margin-bottom: 20px;
+      margin-top: 50px;
+      border-radius: 5px;
+      border-color: white;
+    }
+    #password {
+      margin-bottom: 20px;
+      border-radius: 5px;
+      border-color: rgb(252, 245, 245);
+    }
+    #forgotpassword {
+      font-size: small;
+      color: rgb(129, 59, 194);
+      position: absolute;
+    }
+    #submit {
+      margin-bottom: 50px;
+      margin-top: 50px;
+      background-color: rgb(129, 59, 194);
+      color: white;
+      border-radius: 5px;
+      width: 50%;
+    }
+    #resetpass1 {
+      margin-top: 50px;
+      width: 325px;
+      border-radius: 5px;
+    }
+    #resetpass2 {
+      width: 325px;
+      margin-top: 30px;
+      margin-bottom: 50px;
+      border-radius: 5px;
+    }
+    #reset-button {
+      background-color: rgb(129, 59, 194);
+      color: white;
+      border-radius: 5px;
+      width: 30%;
+      margin-bottom: 50px;
+    }
+  }
+}

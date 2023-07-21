@@ -20,6 +20,9 @@ html {
       margin-top: 50px;
       width: 325px;
       border-radius: 5px;
+      border-color: white;
+      border: none;
+      padding: 10px;
     }
     #submit-pass {
       margin-bottom: 50px;
@@ -28,17 +31,22 @@ html {
       color: white;
       border-radius: 5px;
       width: 30%;
+      border: none;
     }
     #username {
       margin-bottom: 20px;
       margin-top: 50px;
       border-radius: 5px;
       border-color: white;
+      border: none;
+      padding: 10px;
     }
     #password {
       margin-bottom: 20px;
       border-radius: 5px;
       border-color: rgb(252, 245, 245);
+      border: none;
+      padding: 10px;
     }
     #forgotpassword {
       font-size: small;
@@ -51,18 +59,23 @@ html {
       background-color: rgb(129, 59, 194);
       color: white;
       border-radius: 5px;
-      width: 50%;
+      width: 20rem;
+      border: none;
     }
     #resetpass1 {
       margin-top: 50px;
-      width: 325px;
       border-radius: 5px;
+      border-color: white;
+      border: none;
+      padding: 10px;
     }
     #resetpass2 {
-      width: 325px;
       margin-top: 30px;
       margin-bottom: 50px;
       border-radius: 5px;
+      border-color: white;
+      border: none;
+      padding: 10px;
     }
     #reset-button {
       background-color: rgb(129, 59, 194);
@@ -70,10 +83,12 @@ html {
       border-radius: 5px;
       width: 30%;
       margin-bottom: 50px;
+      border: none;
     }
     .sign-up {
       margin-top: 30px;
       font-size: small;
+
       #signup {
         color: rgb(129, 59, 194);
       }

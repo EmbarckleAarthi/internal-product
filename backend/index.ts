@@ -22,21 +22,6 @@ app.get("/", (req, res) => {
   res.send("hello world");
 });
 
-app.post("/signup", (req, res) => {
-  const { username, email, password } = req.body;
-  db.query(
-    "INSERT INTO USERS VALUES(?,?,?)",
-    [username, email, password],
-    (err, result) => {
-      if (err) {
-        console.log(err);
-      } else {
-        res.send("data added");
-      }
-    }
-  );
-});
-
 app.listen(3001, () => {
   // eslint-disable-next-line no-console
   console.log("app listening in port 3001");

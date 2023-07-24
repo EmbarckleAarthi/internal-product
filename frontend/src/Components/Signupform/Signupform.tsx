@@ -2,6 +2,7 @@ import "./style.scss";
 
 import axios from "axios";
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 import { INewUser } from "../../../../common/interface";
 
@@ -11,12 +12,14 @@ export const Signupform: React.FC = () => {
     email: "",
     password: "",
   });
+  const navigate = useNavigate();
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     axios
-      .post("http://localhost:3001/signup", newuser)
+      .post("http://localhost:3001/user/signup", newuser)
       .then((res) => console.log(res.data))
+      .then(() => navigate("/"))
       .catch((err) => console.log(err));
   };
 

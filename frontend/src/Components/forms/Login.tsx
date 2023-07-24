@@ -1,20 +1,21 @@
-import React from "react";
-import { useState } from "react";
 import "./Style.scss";
+
+import axios from "axios";
+import React, { useState } from "react";
+
 export const Login = () => {
-  const [username, setUsername] = useState("");
+  const [email, setUserEmail] = useState("");
   const [password, setPassword] = useState("");
 
   function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
-
-    console.log(username);
-    console.log(password);
-    setUsername("");
-    setPassword("");
+    axios
+      .post("http://localhost:3001/user/login", { email, password })
+      .then((res) => console.log(res.data))
+      .catch((err) => console.log(err));
   }
-  function handleChangeUsername(event: React.ChangeEvent<HTMLInputElement>) {
-    setUsername(event.target.value.toLowerCase());
+  function handleChangeUserEmail(event: React.ChangeEvent<HTMLInputElement>) {
+    setUserEmail(event.target.value.toLowerCase());
   }
 
   function handleChangePassword(event: React.ChangeEvent<HTMLInputElement>) {
@@ -24,13 +25,13 @@ export const Login = () => {
     <div className="container">
       <form onSubmit={handleSubmit}>
         <div className="username">
-          <label htmlFor="username"></label>
+          <label htmlFor="email"></label>
           <input
             id="username"
             type="text"
-            value={username}
-            placeholder="Username"
-            onChange={handleChangeUsername}
+            value={email}
+            placeholder="Email"
+            onChange={handleChangeUserEmail}
           ></input>
         </div>
         <div className="password">

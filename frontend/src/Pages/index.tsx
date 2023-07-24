@@ -1,8 +1,9 @@
 import React from "react";
 import { Route, Routes } from "react-router-dom";
-import { Signupform } from "../Components/Signupform";
 import { Forgotpassword } from "src/Components/forms/Forgotpassword";
 import { Resetpassword } from "src/Components/forms/Resetpassword";
+
+import { Signupform } from "../Components/Signupform";
 import { Loginpages } from "./Loginpages";
 
 export const Pages: React.FC = () => {

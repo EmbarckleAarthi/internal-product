@@ -3,10 +3,11 @@ import bcrypt from "bcryptjs";
 import { INewUser } from "../../../common/interface/INewUser";
 import { db } from "../../index";
 
+
 export const finduser = async (data: any) => {
   return new Promise((resolve, reject) => {
     db.query(
-      `SELECT * FROM users where email="${data.email}"`,
+      `SELECT * FROM users where email="${data}"`,
       (err, result) => {
         if (err) {
           reject(err);

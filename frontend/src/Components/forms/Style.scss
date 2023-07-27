@@ -1,12 +1,14 @@
 html {
   background-color: white;
   text-align: center;
+
   .container {
     text-align: center;
     height: 50em;
     width: 50em;
     margin: auto;
   }
+
   form {
     border: 2px solid rgb(250, 246, 246);
     border-radius: 10px;
@@ -16,6 +18,7 @@ html {
     margin-left: 25%;
     margin-right: 25%;
     margin-top: 15%;
+
     #forgotpass {
       margin-top: 50px;
       width: 325px;
@@ -24,6 +27,7 @@ html {
       border: none;
       padding: 10px;
     }
+
     #submit-pass {
       margin-bottom: 50px;
       margin-top: 50px;
@@ -32,7 +36,9 @@ html {
       border-radius: 5px;
       width: 30%;
       border: none;
+      padding: 10px;
     }
+
     #username {
       margin-bottom: 20px;
       margin-top: 50px;
@@ -41,6 +47,7 @@ html {
       border: none;
       padding: 10px;
     }
+
     #password {
       margin-bottom: 20px;
       border-radius: 5px;
@@ -48,11 +55,13 @@ html {
       border: none;
       padding: 10px;
     }
+
     #forgotpassword {
       font-size: small;
       color: rgb(129, 59, 194);
       position: absolute;
     }
+
     #submit {
       margin-bottom: 30px;
       margin-top: 30px;
@@ -62,6 +71,7 @@ html {
       width: 20rem;
       border: none;
     }
+
     #resetpass1 {
       margin-top: 50px;
       border-radius: 5px;
@@ -69,6 +79,7 @@ html {
       border: none;
       padding: 10px;
     }
+
     #resetpass2 {
       margin-top: 30px;
       margin-bottom: 50px;
@@ -77,6 +88,7 @@ html {
       border: none;
       padding: 10px;
     }
+
     #reset-button {
       background-color: rgb(129, 59, 194);
       color: white;
@@ -84,7 +96,9 @@ html {
       width: 30%;
       margin-bottom: 50px;
       border: none;
+      padding: 10px;
     }
+
     .sign-up {
       margin-top: 30px;
       font-size: small;

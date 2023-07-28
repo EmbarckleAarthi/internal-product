@@ -9,6 +9,8 @@ export const Login = () => {
 
   function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
+    setUserEmail("")
+    setPassword("")
     axios
       .post("http://localhost:3001/user/login", { email, password })
       .then((res) => console.log(res.data))

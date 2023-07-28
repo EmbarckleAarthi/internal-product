@@ -1,8 +1,6 @@
 import bcrypt from "bcryptjs";
-
 import { INewUser } from "../../../common/interface/INewUser";
 import { db } from "../../index";
-
 
 export const finduser = async (data: any) => {
   return new Promise((resolve, reject) => {
@@ -48,3 +46,23 @@ export const loginUser = async (user: any, data: INewUser) => {
     }
   });
 };
+
+export const updateUserPassword = async (email: string, newPassword: string) => {
+  const salt = await bcrypt.genSalt(10);
+  const hashedPassword = await bcrypt.hash(newPassword, salt);
+
+  return new Promise<void>((resolve, reject) => {
+    db.query(
+      `UPDATE users SET password=? WHERE email=?`,
+      [hashedPassword, email],
+      (err, result) => {
+        if (err) {
+          reject(err);
+        } else {
+          resolve();
+        }
+      }
+    );
+  });
+};
+

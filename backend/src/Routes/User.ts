@@ -4,9 +4,11 @@ import {
   finduser,
   loginUser,
   registerUser,
+  updateUserPassword
 } from "../controllers/AuthController";
 import jwt from "jsonwebtoken";
 import nodemailer from "nodemailer";
+
 export const router = express.Router();
 
 router.post("/signup", async (req, res) => {
@@ -29,7 +31,7 @@ router.post("/login", async (req, res) => {
 const transporter = nodemailer.createTransport({
   service: 'gmail',
   auth: {
-    user: 'vigilaakennedy@gmail.com',
+    user: 'vigilaakennedy@gmail.com',  //TODO 
     pass: 'gmhekehkmchvybtw'
   }
 });
@@ -46,12 +48,12 @@ router.post("/forgotpassword", async (req, res) => {
     if (!user) {
       return res.send('Email address not found');
     }
-    const resetUrl = `http://localhost:1234/resetpassword/`;
+    const resetUrl = `http://localhost:1234/resetpassword/`;   //TODO
     const mailOptions = {
       from: 'vigilaakennedy@gmail.com',
       to: data.email,
       subject: 'Password Reset Instructions',
-      text: `Please click on the following link to reset your password: ${resetUrl}?${token}`
+      text: `Please click on the following link to reset your password: ${resetUrl}?token=${token}`
     };
     transporter.sendMail(mailOptions, (error, info) => {
       if (error) {
@@ -74,17 +76,12 @@ const verifyJwt = (token: string, secretKey: string): Promise<any> => {
 };
 router.post('/resetpassword/:token', async (req, res) => {
   const token = req.params.token;
-
-
-  console.log('Received token:', token);
-
   const jwtSecretKey = 'secret';
-  // console.log(token)
   try {
     const decodedData: any = await verifyJwt(token, jwtSecretKey);
-    console.log(decodedData);
+    const newPassword = req.body.password;
+    await updateUserPassword(decodedData.email, newPassword);
     res.send('Password reset successful');
-
   } catch (err) {
     console.error(err);
     res.status(401).send('Invalid or expired token');

@@ -1,5 +1,9 @@
+import dotenv from 'dotenv';
+
+if (dotenv.config) dotenv.config();
+
 export const config = {
-    port: process.env.PORT || 3001,
+    port: process.env.PORT || 3000,
     database: {
         host: process.env.DATABASE_HOST || '',
         port: parseInt(process.env.DATABASE_PORT || '3306'),
@@ -12,4 +16,5 @@ export const config = {
         username: process.env.MAIL_AUTH_USERNAME || '',
         password: process.env.MAIL_AUTH_PASSWORD || '',
     },
+    jwtSecret: process.env.SECRET || 'secret',
 };

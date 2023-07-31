@@ -1,10 +1,10 @@
-import React from "react";
-import { Signupform } from "src/Components/Signupform";
+import React from 'react';
+import { Signupform } from 'src/Components/Signupform';
 
 export const Signup: React.FC = () => {
-  return (
-    <div className="pages">
-      <Signupform />
-    </div>
-  );
+    return (
+        <div className='pages'>
+            <Signupform />
+        </div>
+    );
 };

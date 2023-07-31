@@ -2,7 +2,7 @@ import cookieParser from 'cookie-parser';
 import cors from 'cors';
 import express, { Express } from 'express';
 
-import { config } from './Config';
+import { config } from './config';
 import { routes } from './RouterConfig';
 
 export class App {

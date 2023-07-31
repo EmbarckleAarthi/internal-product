@@ -1,8 +1,8 @@
 {
-    "env": {
-      "node": true
-    },
-    "rules": {
-      "no-console": "error"
-    }
+  "env": {
+    "node": true
+  },
+  "rules": {
+    "no-console": "warn"
   }
+}

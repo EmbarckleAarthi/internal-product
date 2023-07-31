@@ -6,10 +6,20 @@ import { INewUser } from '@common/interface';
 
 import { AuthService, MailService } from '../services';
 import { verifyJwt } from '../utils';
+import { generateToken } from '../utils/GenerateToken';
 
 export class AuthController {
-    private authService: AuthService = new AuthService();
-    private mailService: MailService = new MailService();
+    private authService!: AuthService;
+    private mailService!: MailService;
+
+    constructor() {
+        this.authService = new AuthService();
+        this.mailService = new MailService();
+    }
+
+    public getData = async (req: Request, res: Response) => {
+        res.send('hit endpoint');
+    };
 
     public signup = async (req: Request, res: Response) => {
         try {
@@ -26,19 +36,34 @@ export class AuthController {
         }
     };
 
-    public async login(req: Request, res: Response) {
-        const user: INewUser = await this.authService.finduser(req.body);
-        const isValid = await bcrypt.compare(req.body.password, user.password);
+    public currentUser = async (req: Request, res: Response) => {
+        const token = await req.cookies.accesstoken;
+        console.log(token);
+
+        if (token) {
+            const identified_user_email = jwt.decode(token);
+            const identified_user = await this.authService.finduser(identified_user_email);
+            res.status(200).json({ loggedIn: true, username: identified_user.username });
+        } else {
+            res.status(401).send('Unauthorized');
+        }
+    };
+
+    public login = async (req: Request, res: Response) => {
+        const user: INewUser = await this.authService.finduser(req.body.email);
         if (user) {
+            const token = generateToken(user.email);
+            const isValid = await bcrypt.compare(req.body.password, user.password);
             if (isValid) {
-                res.send('Login successful');
+                res.cookie('accesstoken', token, { path: '*', maxAge: 24 * 60 * 60 * 1000, httpOnly: true });
+                res.status(200).json({ msg: 'success', username: user.username });
             } else {
                 res.send('Invalid credentials');
             }
         } else {
-            res.send('User not exist');
+            res.status(404).send('User not exist');
         }
-    }
+    };
 
     public async forgotPassword(req: Request, res: Response) {
         const user: INewUser = await this.authService.finduser(req.body.email);

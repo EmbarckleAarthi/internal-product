@@ -1,3 +1,4 @@
+import cookieParser from 'cookie-parser';
 import cors from 'cors';
 import express, { Express } from 'express';
 
@@ -16,13 +17,14 @@ export class App {
 
     private initMiddlewares() {
         this.app.use(express.json());
+        this.app.use(cookieParser());
         this.app.use(cors());
     }
 
     private initRoutes() {
         // Initialize the routers
         routes.forEach((config) => {
-            this.app.use(config.router.getRouter());
+            this.app.use(config.path, config.router.getRouter());
         });
     }
 

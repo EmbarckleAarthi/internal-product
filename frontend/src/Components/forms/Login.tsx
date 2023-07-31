@@ -2,18 +2,23 @@ import './Style.scss';
 
 import axios from 'axios';
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { useAuth } from 'src/utils/Auth';
 
 export const Login = () => {
     const [email, setUserEmail] = useState('');
     const [password, setPassword] = useState('');
+    const auth = useAuth();
+    const navigate = useNavigate();
 
     function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
         event.preventDefault();
-        setUserEmail('');
-        setPassword('');
         axios
-            .post('http://localhost:3001/user/login', { email, password })
-            .then((res) => console.log(res.data))
+            .post('http://localhost:3000/auth/login', { email, password })
+            .then((res) => {
+                auth.setIsLoggedIn(true);
+                navigate('/dashboard', { state: { username: res.data.username } });
+            })
             .catch((err) => console.log(err));
     }
     function handleChangeUserEmail(event: React.ChangeEvent<HTMLInputElement>) {
@@ -23,6 +28,7 @@ export const Login = () => {
     function handleChangePassword(event: React.ChangeEvent<HTMLInputElement>) {
         setPassword(event.target.value.toLowerCase());
     }
+
     return (
         <div className='container'>
             <form onSubmit={handleSubmit}>

@@ -7,16 +7,15 @@
     "experimentalDecorators": true,
     "forceConsistentCasingInFileNames": true,
     "lib": ["DOM", "DOM.Iterable", "ES2021"],
-    "moduleResolution": "Node",
     "module": "CommonJS",
     "newLine": "lf",
     "pretty": true,
     "resolveJsonModule": true,
     "skipLibCheck": true,
     "strict": true,
-    "target": "ES2018",
+    "target": "ESNext",
     "jsx": "react",
-    "outDir": "dist",
+    "outDir": "dist"
   },
   "include": ["./src/**/*"],
   "exclude": ["node_modules"]

@@ -11,11 +11,26 @@ export const Signupform: React.FC = () => {
         username: '',
         email: '',
         password: '',
+
+        
     });
     const navigate = useNavigate();
 
     const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
+
+        if (!newuser.email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(newuser.email)) {
+            console.log('Invalid email');
+            return;
+          }
+      
+        
+          const passwordRegex = /^(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{6,}$/;
+          if (!passwordRegex.test(newuser.password)) {
+            console.log('Invalid password (should include at least one uppercase letter, one numeric digit, and one special character)');
+            return;
+          }
+    
         axios
             .post('http://localhost:3001/auth/signup', newuser)
             .then((res) => console.log(res.data))
@@ -25,7 +40,7 @@ export const Signupform: React.FC = () => {
 
     return (
         <div className='container'>
-            <form onSubmit={handleSubmit}>
+            <form className='form-container' onSubmit={handleSubmit}>
                 <input
                     type='text'
                     value={newuser.username}

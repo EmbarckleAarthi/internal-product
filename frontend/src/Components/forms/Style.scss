@@ -1,15 +1,16 @@
-html {
-  background-color: white;
-  text-align: center;
 
+ 
   .container {
     text-align: center;
     height: 50em;
     width: 50em;
     margin: auto;
+    background-color: white;
+    text-align: center;
   }
+  
 
-  form {
+  .form-container {
     border: 2px solid rgb(250, 246, 246);
     border-radius: 10px;
     background-color: rgb(250, 246, 246);
@@ -108,4 +109,4 @@ html {
       }
     }
   }
-}
+  

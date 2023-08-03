@@ -6,6 +6,10 @@ export const Forgotpassword = () => {
     function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
         event.preventDefault();
         setEmail('');
+        if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+            console.log('Invalid email');
+            return;
+          }
         axios
             .post('http://localhost:3001/auth/forgotpassword', { email: email })
             .then((res) => console.log(res.data))
@@ -16,7 +20,7 @@ export const Forgotpassword = () => {
     }
 
     return (
-        <form onSubmit={handleSubmit}>
+        <form className='form-container' onSubmit={handleSubmit}>
             <div className='forgotpassword'>
                 <label htmlFor='email'></label>
                 <input

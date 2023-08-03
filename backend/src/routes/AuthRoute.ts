@@ -12,7 +12,7 @@ export class AuthRoute {
         this.router.post('/signup', this.authController.signup);
         this.router.post('/login', this.authController.login);
         this.router.post('/forgotpassword', this.authController.forgotPassword);
-        this.router.post('/resetpassword', this.authController.resetPassword);
+        this.router.post('/resetpassword/:token', this.authController.resetPassword);
     }
 
     public getRouter(): Router {

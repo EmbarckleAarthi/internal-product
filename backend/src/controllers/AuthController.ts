@@ -35,7 +35,6 @@ export class AuthController {
             res.status(500).send({ message: `Error:${err.message}` });
         }
     };
-
     public currentUser = async (req: Request, res: Response) => {
         const token = await req.cookies.accesstoken;
         console.log(token);
@@ -65,7 +64,7 @@ export class AuthController {
         }
     };
 
-    public async forgotPassword(req: Request, res: Response) {
+    public forgotPassword = async(req: Request, res: Response) =>{
         const user: INewUser = await this.authService.finduser(req.body.email);
 
         if (user) {
@@ -89,16 +88,16 @@ export class AuthController {
             const isMailSent = this.mailService.sendMail(mailOptions);
 
             if (isMailSent) {
-                res.send('Failed to send password reset instructions');
-            } else {
                 res.send('Password reset instructions sent to your email');
+            } else {
+                res.send('Failed to send password reset instructions');
             }
         } else {
             res.send('User not found');
         }
     }
 
-    public async resetPassword(req: Request, res: Response) {
+    public resetPassword = async(req: Request, res: Response) => {
         const token = req.params.token;
         const jwtSecretKey = 'secret';
 
@@ -109,7 +108,7 @@ export class AuthController {
 
             if (isUpdated) res.send('Successfully reset password');
             else res.send('Failed to reset password');
-            res.send('Password reset successful');
+            // res.send('Password reset successful');
         } catch (err) {
             res.status(401).send('Invalid or expired token');
         }

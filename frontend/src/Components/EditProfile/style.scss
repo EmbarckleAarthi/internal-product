@@ -1,0 +1,50 @@
+.user-details{
+    h2{
+        text-align: left;
+    }
+   
+    height: 38em;
+    width: 270em;
+    margin: auto;
+    background-color:rgb(250, 246, 246);
+    // text-align: center;
+    display:flex;
+}
+.profile-form{
+    label{
+        // display: inline-block;
+        float: left;
+        clear: left;
+        width: 110px;
+        text-align: right;
+        padding: 5px;
+    }
+    input {
+    //   display: inline-block;
+      float: left;  
+    }
+    button{
+        text-align: center;
+    }
+    #submit-button{
+        background-color: rgb(129, 59, 194);
+        color: white;
+        float: left;
+        clear: left;
+        text-align: center;
+        border: none;
+        border-radius: 5px;
+        padding: 5px;
+    }
+    #cancel-button{
+        background-color: rgb(129, 59, 194);
+        color: white;
+        // float: left;
+        // clear: left;
+        // text-align: center;
+        border: none;
+        border-radius: 5px;
+        padding: 5px;
+        margin-top: 23px;
+    }
+}

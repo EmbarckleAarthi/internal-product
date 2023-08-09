@@ -7,10 +7,10 @@ export class AuthRoute {
     private authController = new AuthController();
 
     constructor() {
-        this.router.get('/', this.authController.getData);
         this.router.get('/currentUser', this.authController.currentUser);
         this.router.post('/signup', this.authController.signup);
         this.router.post('/login', this.authController.login);
+        this.router.get('/logout', this.authController.logOut);
         this.router.post('/forgotpassword', this.authController.forgotPassword);
         this.router.post('/resetpassword/:token', this.authController.resetPassword);
     }

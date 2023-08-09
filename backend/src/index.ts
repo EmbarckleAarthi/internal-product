@@ -1,8 +1,10 @@
 import cookieParser from 'cookie-parser';
 import cors from 'cors';
 import express, { Express } from 'express';
+import helmet from 'helmet';
+import hpp from 'hpp';
 
-import { config } from './config';
+import { config } from './Config';
 import { routes } from './RouterConfig';
 
 export class App {
@@ -16,9 +18,31 @@ export class App {
     }
 
     private initMiddlewares() {
+        // TODO: Remove this after implementing SSL
+        const cspDirectives = helmet.contentSecurityPolicy.getDefaultDirectives();
+        delete cspDirectives['upgrade-insecure-requests'];
+        cspDirectives['script-src'] = ["'self'", "'unsafe-inline'", "'unsafe-eval'"];
+        cspDirectives['style-src'] = ["'self'", "'unsafe-inline'", 'fonts.googleapis.com'];
+        cspDirectives['img-src'] = ["'self'", 'blob:', 'data:'];
+
+        this.app.use(
+            helmet({
+                hsts: false,
+                contentSecurityPolicy: {
+                    directives: cspDirectives,
+                },
+            })
+        );
+
+        this.app.use(hpp());
         this.app.use(express.json());
-        this.app.use(cookieParser());
-        this.app.use(cors({ credentials: true, origin: 'http://localhost:1234' }));
+        this.app.use(cookieParser(config.jwtSecret));
+        this.app.use(
+            cors({
+                credentials: true,
+                origin: 'http://localhost:1234',
+            })
+        );
     }
 
     private initRoutes() {

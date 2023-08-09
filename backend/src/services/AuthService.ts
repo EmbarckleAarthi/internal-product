@@ -19,18 +19,22 @@ export class AuthService {
         });
     }
 
-    public async registerUser({ email, password, username }: INewUser) {
+    public async registerUser({ email, employee_id, password, username, role }: INewUser) {
         const salt = await bcrypt.genSalt(10);
         const hashed_Password = await bcrypt.hash(password, salt);
 
         return new Promise((resolve, reject) => {
-            database.query(`INSERT INTO users values(?,?,?)`, [username, email, hashed_Password], (err) => {
-                if (err) {
-                    reject(err);
-                } else {
-                    resolve('User Added!');
+            database.query(
+                `INSERT INTO users values(?,?,?,?,?)`,
+                [username, email, hashed_Password, employee_id, role],
+                (err) => {
+                    if (err) {
+                        reject(err);
+                    } else {
+                        resolve('User Added!');
+                    }
                 }
-            });
+            );
         });
     }
 

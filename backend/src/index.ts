@@ -18,7 +18,7 @@ export class App {
     private initMiddlewares() {
         this.app.use(express.json());
         this.app.use(cookieParser());
-        this.app.use(cors());
+        this.app.use(cors({ credentials: true, origin: 'http://localhost:1234' }));
     }
 
     private initRoutes() {

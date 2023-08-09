@@ -4,6 +4,10 @@ if (dotenv) dotenv.config();
 
 export const config = {
     port: process.env.PORT || 3001,
+    admin: {
+        admin_id: process.env.ADMIN_ID,
+        admin_password: process.env.ADMIN_PASSWORD,
+    },
     database: {
         host: process.env.DATABASE_HOST || '192.168.29.212',
         port: parseInt(process.env.DATABASE_PORT || '3307'),

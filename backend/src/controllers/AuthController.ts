@@ -4,6 +4,7 @@ import jwt from 'jsonwebtoken';
 
 import { INewUser } from '@common/interface';
 
+import { config } from '../Config';
 import { AuthService, MailService } from '../services';
 import { verifyJwt } from '../utils';
 import { generateToken } from '../utils/GenerateToken';
@@ -16,10 +17,6 @@ export class AuthController {
         this.authService = new AuthService();
         this.mailService = new MailService();
     }
-
-    public getData = async (req: Request, res: Response) => {
-        res.send('hit endpoint');
-    };
 
     public signup = async (req: Request, res: Response) => {
         try {
@@ -35,36 +32,69 @@ export class AuthController {
             res.status(500).send({ message: `Error:${err.message}` });
         }
     };
-    public currentUser = async (req: Request, res: Response) => {
-        const token = await req.cookies.accesstoken;
-        console.log(token);
 
-        if (token) {
-            const identified_user_email = jwt.decode(token);
-            const identified_user = await this.authService.finduser(identified_user_email);
-            res.status(200).json({ loggedIn: true, username: identified_user.username });
-        } else {
-            res.status(401).send('Unauthorized');
+    public logOut = async (req: Request, res: Response) => {
+        res.clearCookie('accesstoken', {
+            expires: new Date(Date.now()),
+            path: '/currentUser',
+            httpOnly: true,
+            sameSite: 'lax',
+        });
+        res.status(200).send({ message: 'cookie cleared' });
+    };
+
+    public currentUser = async (req: Request, res: Response) => {
+        try {
+            const token = req.cookies.accesstoken;
+            if (token) {
+                const identified_user_email = jwt.decode(token);
+                const identified_user = await this.authService.finduser(identified_user_email);
+                res.status(200).send({ loggedIn: true, username: identified_user.username });
+            } else {
+                res.status(401).send('Unauthorized');
+            }
+        } catch (err) {
+            res.send(err.message);
         }
     };
 
     public login = async (req: Request, res: Response) => {
         const user: INewUser = await this.authService.finduser(req.body.email);
-        if (user) {
+        if (!user) {
+            if (req.body.email === config.admin.admin_id && req.body.password === config.admin.admin_password) {
+                res.status(200).send({ message: 'admin login successsful', role: 'admin' });
+            }
+        } else if (user && user.role === 'admin') {
+            if (user.role === 'admin') {
+                const isValid = await bcrypt.compare(req.body.password, user.password);
+                if (isValid) {
+                    res.status(200).send({ message: 'admin user', role: 'admin' });
+                } else {
+                    res.status(401).send({ messsage: 'Invalid credentials' });
+                }
+            }
+        } else if (user && user.role === 'user') {
             const token = generateToken(user.email);
             const isValid = await bcrypt.compare(req.body.password, user.password);
+
             if (isValid) {
-                res.cookie('accesstoken', token, { path: '*', maxAge: 24 * 60 * 60 * 1000, httpOnly: true });
-                res.status(200).json({ msg: 'success', username: user.username });
+                res.cookie('accesstoken', token, {
+                    expires: new Date(Date.now() + 60 * 60 * 24 * 1000 * 7),
+                    maxAge: 1000 * 60 * 60 * 24,
+                    path: '/currentUser',
+                    httpOnly: true,
+                    sameSite: 'lax',
+                });
+                res.status(200).send({ msg: 'success', username: user.username, role: user.role });
             } else {
-                res.send('Invalid credentials');
+                res.status(401).send({ message: 'Invalid credentials' });
             }
         } else {
-            res.status(404).send('User not exist');
+            res.status(404).send({ message: 'User does not exist' });
         }
     };
 
-    public forgotPassword = async(req: Request, res: Response) =>{
+    public forgotPassword = async (req: Request, res: Response) => {
         const user: INewUser = await this.authService.finduser(req.body.email);
 
         if (user) {
@@ -95,9 +125,9 @@ export class AuthController {
         } else {
             res.send('User not found');
         }
-    }
+    };
 
-    public resetPassword = async(req: Request, res: Response) => {
+    public resetPassword = async (req: Request, res: Response) => {
         const token = req.params.token;
         const jwtSecretKey = 'secret';
 
@@ -112,5 +142,5 @@ export class AuthController {
         } catch (err) {
             res.status(401).send('Invalid or expired token');
         }
-    }
+    };
 }

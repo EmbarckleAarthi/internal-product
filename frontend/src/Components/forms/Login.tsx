@@ -1,23 +1,26 @@
 import './Style.scss';
 
 import axios from 'axios';
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useAuth } from 'src/utils/Auth';
 
 export const Login = () => {
- const [email, setUserEmail] = useState('');
- const [password, setPassword] = useState('');
- const auth = useAuth();
- const navigate = useNavigate();
+    const [email, setUserEmail] = useState('');
+    const [password, setPassword] = useState('');
+    const auth = useAuth();
+    const navigate = useNavigate();
 
     function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
         event.preventDefault();
-        if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
-            console.log('Invalid email');
+        const passwordRegex = /^(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{6,}$/;
+        if (!passwordRegex.test(password)) {
+            console.log(
+                'Invalid password (should include at least one uppercase letter, one numeric digit, and one special character)'
+            );
             return;
         }
-  
+
         axios
             .post(`/auth/login`, { email, password }, { withCredentials: true })
             .then((res) => {
@@ -26,6 +29,7 @@ export const Login = () => {
             })
             .catch((err) => console.log(err));
     }
+
     function handleChangeUserEmail(event: React.ChangeEvent<HTMLInputElement>) {
         setUserEmail(event.target.value);
     }
@@ -34,30 +38,9 @@ export const Login = () => {
         setPassword(event.target.value);
     }
 
-  const passwordRegex = /^(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{6,}$/;
-  if (!passwordRegex.test(password)) {
-    console.log('Invalid password (should include at least one uppercase letter, one numeric digit, and one special character)');
-    return;
-  }
-
- axios
-.post('http://localhost:3001/auth/login', { email, password })
- .then((res) => {
- auth.setIsLoggedIn(true);
- navigate('/dashboard', { state: { username: res.data.username } });
- })
- .catch((err) => console.log(err));
- }
- function handleChangeUserEmail(event: React.ChangeEvent<HTMLInputElement>) {
- setUserEmail(event.target.value);
- }
-
- function handleChangePassword(event: React.ChangeEvent<HTMLInputElement>) {
- setPassword(event.target.value);
- }
     return (
         <div className='container'>
-            <form className='form-container'onSubmit={handleSubmit}>
+            <form className='form-container' onSubmit={handleSubmit}>
                 <div className='username'>
                     <label htmlFor='email'></label>
                     <input

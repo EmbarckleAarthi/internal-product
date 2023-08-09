@@ -11,7 +11,7 @@ export const Forgotpassword = () => {
             return;
           }
         axios
-            .post('http://localhost:3001/auth/forgotpassword', { email: email })
+            .post(`/auth/forgotpassword`, { email: email })
             .then((res) => console.log(res.data))
             .catch((err) => console.log(err));
     }

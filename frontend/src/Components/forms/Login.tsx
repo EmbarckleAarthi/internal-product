@@ -11,13 +11,28 @@ export const Login = () => {
  const auth = useAuth();
  const navigate = useNavigate();
 
- function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
- event.preventDefault();
- if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
-    console.log('Invalid email');
-    return;
-  }
+    function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
+        event.preventDefault();
+        if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+            console.log('Invalid email');
+            return;
+        }
+  
+        axios
+            .post(`/auth/login`, { email, password }, { withCredentials: true })
+            .then((res) => {
+                auth.setIsLoggedIn(true);
+                navigate('/dashboard', { state: { username: res.data.username, role: res.data.role } });
+            })
+            .catch((err) => console.log(err));
+    }
+    function handleChangeUserEmail(event: React.ChangeEvent<HTMLInputElement>) {
+        setUserEmail(event.target.value);
+    }
 
+    function handleChangePassword(event: React.ChangeEvent<HTMLInputElement>) {
+        setPassword(event.target.value);
+    }
 
   const passwordRegex = /^(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{6,}$/;
   if (!passwordRegex.test(password)) {
@@ -68,11 +83,12 @@ export const Login = () => {
                         Forgot password?
                     </a>
                 </div>
-                <div className='sign-up'>
+                {/* <div className='sign-up'>
                     <a href='http://localhost:1234/signupform' id='signup'>
                         Don't have an account? Click here.
                     </a>
-                </div>
+                </div> */}
+
                 <div>
                     <button type='submit' id='submit'>
                         Sign In

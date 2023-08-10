@@ -13,14 +13,13 @@ export const Login = () => {
 
     function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
         event.preventDefault();
-        const passwordRegex = /^(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{6,}$/;
-        if (!passwordRegex.test(password)) {
-            console.log(
-                'Invalid password (should include at least one uppercase letter, one numeric digit, and one special character)'
-            );
-            return;
-        }
+       
 
+  const passwordRegex = /^(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{6,}$/;
+  if (!passwordRegex.test(password)) {
+    console.log('Invalid password (should include at least one uppercase letter, one numeric digit, and one special character)');
+    return;
+  }
         axios
             .post(`/auth/login`, { email, password }, { withCredentials: true })
             .then((res) => {
@@ -33,6 +32,7 @@ export const Login = () => {
     function handleChangeUserEmail(event: React.ChangeEvent<HTMLInputElement>) {
         setUserEmail(event.target.value);
     }
+
 
     function handleChangePassword(event: React.ChangeEvent<HTMLInputElement>) {
         setPassword(event.target.value);

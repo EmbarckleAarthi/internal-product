@@ -1,50 +1,287 @@
 .user-details{
-    h2{
-        text-align: left;
-    }
-   
-    height: 38em;
-    width: 270em;
+    font-family: "Times New Roman", Times, serif;
     margin: auto;
     background-color:rgb(250, 246, 246);
-    // text-align: center;
     display:flex;
 }
-.profile-form{
-    label{
-        // display: inline-block;
+.work-experience-item {
+    display: flex;
+    input{
+        width: 10px;
+    }
+}
+.education-details-item{
+    display: flex;
+}
+.dependant-details-item{
+    display: flex;
+}
+#profile-form{
+    box-sizing: border-box;
+    width: 100%;
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    h2{
+       
+        margin-left: 10px;
+        color: #2b0933;
+    }
+    #last-name{
+        margin-left: 800px;
+        margin-top: -90px;
+
+    }
+    #last-namelabel{
+        margin-left: 630px;
+        margin-top: -90px;
+    }
+    #email-address{
+        margin-left: 800px;
+        margin-top: -30px;
+     }
+     #email-address-label{
+        margin-left: 630px;
+        margin-top: -30px;
+     }
+     #aboutme{
+        margin-left: 800px;
+        margin-top: -90px;
+     }
+     #aboutmelabel{
+        margin-left: 630px;
+        margin-top: -90px;
+     }
+     #aadhar{
+        margin-left: 800px;
+        margin-top: -90px;
+    }
+    #aadhar-label{
+        margin-left: 630px;
+        margin-top: -90px;
+    }
+    #location {
+          margin-left: 800px;
+          margin-top: -300px;
+    }
+    #locationlabel {
+        margin-left: 630px;
+        margin-top: -300px;
+    }
+    #sourceofhire {
+        margin-left: 800px;
+        margin-top: -240px;
+    }
+    #sourcelabel{
+        margin-left: 630px;
+        margin-top: -240px;
+
+    }
+    #designation{
+        margin-left: 800px;
+        margin-top: -180px;
+    }
+    #designationlabel{
+        margin-left: 630px;
+        margin-top: -180px;
+    }
+    #dateofjoining{
+        margin-left: 800px;
+        margin-top: -120px;
+    }
+    #dateofjoininglabel{
+        margin-left: 630px;
+        margin-top: -120px;
+    }
+    #addedtime{
+        margin-left: 800px;
+        margin-top: -90px;
+    }
+    #addedtimelabel{
+        margin-left: 640px;
+        margin-top: -90px;
+    }
+    #modifiedtime{
+        margin-left: 800px;
+        margin-top: -30px;
+    }
+    #modifiedtimelabel{
+        margin-left: 630px;
+        margin-top: -30px;
+    }
+    #address{
+        margin-left: 800px;
+        margin-top: -125px;
+    }
+    #address-label{
+        margin-left: 630px;
+        margin-top: -125px;
+    }
+    #personalemailaddress{
+        margin-left: 800px;
+        margin-top: -50px;
+    }
+    #personalemailaddress-label{
+        margin-left: 630px;
+        margin-top: -50px;
+    }
+    #jobtitle{
+        width: 200px;
+    }
+    #fromdate{
+        width: 100px;
+    }
+    #todate{
+        width: 100px;
+    }
+     label{
         float: left;
         clear: left;
         width: 110px;
-        text-align: right;
         padding: 5px;
+        margin-top: 30px;
+        margin-left: 35px;
     }
     input {
-    //   display: inline-block;
-      float: left;  
+      float: left;
+      margin-top: 30px;
+      margin-left: 50px;
+      width: 300px;
+      height: 25px;
+      border: none;
+      border-bottom: 2px solid rgb(205 184 184);
+      border-radius: 10px;
     }
     button{
         text-align: center;
+        width: 100px;
+    }
+
+    .button-container {
+        display: flex;
     }
     #submit-button{
         background-color: rgb(129, 59, 194);
         color: white;
-        float: left;
-        clear: left;
         text-align: center;
         border: none;
         border-radius: 5px;
         padding: 5px;
+        margin-left: 50px;
+        margin-top: 20px;
+        margin-bottom: 10px;
+        height: 35px;
+
+
+
     }
     #cancel-button{
         background-color: rgb(129, 59, 194);
         color: white;
-        // float: left;
-        // clear: left;
-        // text-align: center;
         border: none;
         border-radius: 5px;
         padding: 5px;
-        margin-top: 23px;
+        margin-left: 20px;
+        margin-top: 20px;
+        margin-bottom: 10px;
     }
+
+    #remove-button{
+        width: 30px;
+        border-radius: 20px;
+        height: 30px;
+        margin-top: 10px;
+    }
+
+    #add-button{
+        width: 30px;
+        border-radius: 20px;
+        margin-left: 1099px;
+    }
+
+    .work-experience-header{
+        display: flex;
+    }
+
+    #company-name{
+        margin-left: 50px;
+
+    }
+
+    #job-title{
+        margin-left: 140px;
+
+    }
+
+    #from-date{
+        margin-left: 140px;
+
+    }
+
+    #to-date{
+        margin-left: 35px;
+
+    }
+
+    #job-description {
+        margin-left: 0.25px;
+        
+      }
+      #companyname{
+        width: 15em;
+      }
+      #jobtitle{
+        width: 15em;
+      }
+    #jobdescription{
+        margin: 16px;
+        border: none;
+        border-bottom: 2px solid rgb(205, 184, 184);
+        border-radius: 10px;
+        width: 21em;
+    }
+    .dependant-details-header{
+        display: flex;
+        #name{
+            margin-left: 3em;
+        }
+        #relationship{
+            margin-left: 17em;
+        }
+        #relationdateofbirth{
+            margin-left: 17em;
+        }
+    }
+    #relation-name{
+        width: 25em;
+    }
+    #relation-ship{
+        width: 25em;
+    }
+    #dateofcompletion{
+        width: 200px;
+    }
+    #institute{
+        width: 18rem;
+    }
+    #degree-1{
+        width: 10rem;
+    }
+    #specialization-1{
+        width: 15rem;
+    }
+    #institute-name{
+        margin-left: 3rem;
+    }
+    #degree{
+        margin-left: 14.5rem;
+    }
+    #specialization{
+        margin-left: 7.5rem;
+    }
+    #date-of-completion{
+        margin-left: 11rem;
+        width: 30rem;
+    }
+    
 }

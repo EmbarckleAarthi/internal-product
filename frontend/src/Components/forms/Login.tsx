@@ -18,7 +18,6 @@ export const Login = () => {
     return;
   }
 
-
   const passwordRegex = /^(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{6,}$/;
   if (!passwordRegex.test(password)) {
     console.log('Invalid password (should include at least one uppercase letter, one numeric digit, and one special character)');

@@ -9,7 +9,7 @@ export const Forgotpassword = () => {
         if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
             console.log('Invalid email');
             return;
-          }
+        }
         axios
             .post(`/auth/forgotpassword`, { email: email })
             .then((res) => console.log(res.data))

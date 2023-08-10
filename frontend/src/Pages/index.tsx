@@ -1,13 +1,13 @@
 import React from 'react';
 import { Route, Routes } from 'react-router-dom';
 import { Dashboard } from 'src/Components/Dashboard/Dashboard';
+import { Editprofile } from 'src/Components/EditProfile/Editprofile';
 import { Forgotpassword } from 'src/Components/forms/Forgotpassword';
 import { Resetpassword } from 'src/Components/forms/Resetpassword';
 import { Requireauth } from 'src/utils/RequireAuth';
 
 import { Signupform } from '../Components/Signupform';
 import { Loginpages } from './Loginpages';
-import { Editprofile } from 'src/Components/EditProfile/Editprofile';
 
 export const Pages: React.FC = () => {
     return (
@@ -19,7 +19,7 @@ export const Pages: React.FC = () => {
             <Route element={<Requireauth />}>
                 <Route path='/dashboard' element={<Dashboard />} />
             </Route>
-            <Route path='/editprofile' element={<Editprofile/>}/>
+            <Route path='/editprofile' element={<Editprofile />} />
         </Routes>
     );
 };

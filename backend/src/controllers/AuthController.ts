@@ -138,7 +138,6 @@ export class AuthController {
 
             if (isUpdated) res.send('Successfully reset password');
             else res.send('Failed to reset password');
-            // res.send('Password reset successful');
         } catch (err) {
             res.status(401).send('Invalid or expired token');
         }

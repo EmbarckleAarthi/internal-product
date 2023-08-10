@@ -238,7 +238,7 @@
         border: none;
         border-bottom: 2px solid rgb(205, 184, 184);
         border-radius: 10px;
-        width: 21em;
+        width: 19.5em;
     }
     .dependant-details-header{
         display: flex;
@@ -251,6 +251,9 @@
         #relationdateofbirth{
             margin-left: 17em;
         }
+    }
+    #relationdateofbirth{
+        width: 21em;
     }
     #relation-name{
         width: 25em;

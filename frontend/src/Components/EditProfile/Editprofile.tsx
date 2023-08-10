@@ -205,7 +205,7 @@ import './style.scss';
         <label id='dateofjoininglabel' htmlFor='dateofjoining'>Date Of Joining</label>
         <input
           id='dateofjoining'
-          type='text'
+          type='date'
           name='dateofjoining'
           value={formik.values.dateofjoining}
           onChange={formik.handleChange}
@@ -233,7 +233,7 @@ import './style.scss';
           <label htmlFor='dateofbirth'>Date Of Birth</label>
           <input
           id='dateofbirth'
-          type='text'
+          type='date'
           name='dateofbirth'
           value={formik.values.dateofbirth}
           onChange={formik.handleChange}
@@ -315,7 +315,7 @@ import './style.scss';
           <label id='personalemailaddress-label' htmlFor='personalemailaddress'>Personal Email Address</label>
           <input
           id='personalemailaddress'
-          type='text'
+          type='email'
           name='personalemailaddress'
           value={formik.values.personalemailaddress}
           onChange={formik.handleChange}
@@ -356,7 +356,7 @@ import './style.scss';
           <label id='addedtimelabel' htmlFor='addedtime'>Added Time</label>
           <input
           id='addedtime'
-          type='text'
+          type='time'
           name='addedtime'
           value={formik.values.addedtime}
           onChange={formik.handleChange}
@@ -365,7 +365,7 @@ import './style.scss';
           <label id='modifiedtimelabel' htmlFor='modifiedtime'>Modified Time</label>
           <input
           id='modifiedtime'
-          type='text'
+          type='time'
           name='modifiedtime'
           value={formik.values.modifiedtime}
           onChange={formik.handleChange}
@@ -404,12 +404,12 @@ import './style.scss';
                       <Field
                         id= {'fromdate'}
                         name={`workExperience.${index}.fromdate`}
-                        type='text'
+                        type='date'
                        />
                        <Field
                         id= {'todate'}
                         name={`workExperience.${index}.todate`}
-                        type='text'
+                        type='date'
                        />
                        <textarea
                         id={'jobdescription'}
@@ -461,7 +461,7 @@ import './style.scss';
                        <Field
                         id= {'dateofcompletion'}
                         name={`educationDetails.${index}.dateofcompletion`}
-                        type='text'
+                        type='date'
                        />
                        
                       {index > 0 && <button id='remove-button'type="button" onClick={() => arrayHelpers.remove(index)}>-
@@ -506,7 +506,7 @@ import './style.scss';
                       <Field
                         id= {'relationdateofbirth'}
                         name={`dependantDetails.${index}.relationdateofbirth`}
-                        type='text'
+                        type='date'
                        />
                      
                       {index > 0 && <button id='remove-button'type="button" onClick={() => arrayHelpers.remove(index)}>-

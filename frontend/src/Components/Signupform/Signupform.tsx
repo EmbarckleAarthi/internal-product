@@ -9,10 +9,10 @@ import { INewUser } from '../../../../common/interface';
 export const Signupform: React.FC = () => {
     const [newuser, setNewUser] = useState<INewUser>({
         username: '',
+        employee_id: '',
         email: '',
         password: '',
-
-        
+        role: '',
     });
     const navigate = useNavigate();
 
@@ -22,17 +22,18 @@ export const Signupform: React.FC = () => {
         if (!newuser.email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(newuser.email)) {
             console.log('Invalid email');
             return;
-          }
-      
-        
-          const passwordRegex = /^(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{6,}$/;
-          if (!passwordRegex.test(newuser.password)) {
-            console.log('Invalid password (should include at least one uppercase letter, one numeric digit, and one special character)');
+        }
+
+        const passwordRegex = /^(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{6,}$/;
+        if (!passwordRegex.test(newuser.password)) {
+            console.log(
+                'Invalid password (should include at least one uppercase letter, one numeric digit, and one special character)'
+            );
             return;
-          }
-    
+        }
+
         axios
-            .post('http://localhost:3001/auth/signup', newuser)
+            .post(`/auth/signup`, newuser)
             .then((res) => console.log(res.data))
             .then(() => navigate('/'))
             .catch((err) => console.log(err));
@@ -49,6 +50,12 @@ export const Signupform: React.FC = () => {
                 />
                 <input
                     type='text'
+                    value={newuser.employee_id}
+                    placeholder='EmployeeId'
+                    onChange={(e) => setNewUser({ ...newuser, employee_id: e.target.value })}
+                />
+                <input
+                    type='text'
                     value={newuser.email}
                     placeholder='Email'
                     onChange={(e) => setNewUser({ ...newuser, email: e.target.value })}
@@ -59,7 +66,13 @@ export const Signupform: React.FC = () => {
                     placeholder='Password'
                     onChange={(e) => setNewUser({ ...newuser, password: e.target.value })}
                 />
-                <button>Signup</button>
+                <input
+                    type='text'
+                    value={newuser.role}
+                    placeholder='Role'
+                    onChange={(e) => setNewUser({ ...newuser, role: e.target.value })}
+                />
+                <button>Sign up user</button>
             </form>
         </div>
     );

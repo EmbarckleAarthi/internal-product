@@ -1,29 +1,27 @@
 import axios from 'axios';
-import React, { useEffect } from 'react';
+import React from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
+import { useAuth } from 'src/utils/Auth';
 
 export const Dashboard: React.FC = () => {
     const location = useLocation();
-
     const navigate = useNavigate();
-
-    useEffect(() => {
-        setTimeout(() => {
-            axios
-                .get('http://localhost:3000/auth/currentUser')
-                .then((res) => console.log(res))
-                .catch((err) => console.log(err));
-        }, 3000);
-    }, []);
-
-    const handleEditProfileClick = () => {
-        navigate('/editprofile'); 
-    }
+    const auth = useAuth();
+    const handleLogOut = () => {
+        axios
+            .get('/auth/logout')
+            // .then(() => auth.setIsLoggedIn(false))
+            .then(() => navigate('/'))
+            .catch((err) => console.log(err));
+    };
+    const handleAddUser = () => {
+        navigate('/signupform');
+    };
     return (
         <div>
             <h1>Welcome {location.state.username}</h1>
-            <button id='editprofile-button' onClick={handleEditProfileClick}>Edit Profile</button>
+            <button onClick={handleLogOut}>Logout</button>
+            {location.state.role === 'admin' ? <button onClick={handleAddUser}>Add user</button> : <></>}
         </div>
     );
-}
-
+};

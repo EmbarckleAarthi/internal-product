@@ -6,15 +6,11 @@ export const Resetpassword = () => {
     const [pass, setPass] = useState('');
     const [confirmpass, setConfirmpass] = useState('');
     const [error, setError] = useState('');
-
     const navigate = useNavigate();
-
-
-    
 
     function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
         event.preventDefault();
-       
+
         setPass('');
         setConfirmpass('');
 
@@ -23,35 +19,37 @@ export const Resetpassword = () => {
             return;
         }
         const passwordRegex = /^(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{6,}$/;
-    let isValidPassword = true;
-    if (!passwordRegex.test(pass)) {
-        setError('Invalid password (should include at least one uppercase letter, one numeric digit, and one special character)');
-        isValidPassword = false;
-    }
+        let isValidPassword = true;
+        if (!passwordRegex.test(pass)) {
+            setError(
+                'Invalid password (should include at least one uppercase letter, one numeric digit, and one special character)'
+            );
+            isValidPassword = false;
+        }
 
-        if(isValidPassword){
-        const urlParams = new URLSearchParams(window.location.search);
-        const token = urlParams.get('token');
-        console.log(token, 'frontend');
-        
-      
-        axios
-            .post(`http://localhost:3001/auth/resetpassword/${token}`, { password: pass, confirmpassword: confirmpass })
-            .then((res) => {
-                console.log(res.data);
-                navigate('/')
-            })
-            .catch((err) => console.log(err));
+        if (isValidPassword) {
+            const urlParams = new URLSearchParams(window.location.search);
+            const token = urlParams.get('token');
+            console.log(token, 'frontend');
+
+            axios
+                .post(`/auth/resetpassword/${token}`, {
+                    password: pass,
+                    confirmpassword: confirmpass,
+                })
+                .then((res) => {
+                    console.log(res.data);
+                    navigate('/');
+                })
+                .catch((err) => console.log(err));
+        }
     }
-}
     function handleChangePass(event: React.ChangeEvent<HTMLInputElement>) {
         setPass(event.target.value);
     }
     function handleChangeConfirmpass(event: React.ChangeEvent<HTMLInputElement>) {
         setConfirmpass(event.target.value);
     }
-
- 
 
     return (
         <form className='form-container' onSubmit={handleSubmit}>
@@ -85,5 +83,4 @@ export const Resetpassword = () => {
             </div>
         </form>
     );
-
 };

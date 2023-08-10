@@ -1,5 +1,5 @@
 import axios from 'axios';
-import React, { createContext, useContext, useEffect, useState } from 'react';
+import React, { createContext, PropsWithChildren, useContext, useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 const AuthContext = createContext<{
@@ -12,21 +12,21 @@ const AuthContext = createContext<{
     },
 });
 
-export const AuthProvider = ({ children }) => {
+export const AuthProvider: React.FC<PropsWithChildren> = ({ children }) => {
     const [isLoggedIn, setIsLoggedIn] = useState(false);
     const navigate = useNavigate();
 
-    // useEffect(() => {
-    //     axios
-    //         .get('http://localhost:3000/auth/currentUser', { withCredentials: true })
-    //         .then((res) => {
-    //             setIsLoggedIn(res.data.loggedIn);
+    useEffect(() => {
+        axios
+            .get('/auth/currentUser', { withCredentials: true })
+            .then((res) => {
+                setIsLoggedIn(res.data.loggedIn);
 
-    //             navigate('/dashboard', { state: { username: res.data.username } });
-    //             console.log(res.data.loggedIn);
-    //         })
-    //         .catch((err) => console.log(err));
-    // }, []);
+                navigate('/dashboard', { state: { username: res.data.username } });
+                console.log(res.data.loggedIn);
+            })
+            .catch((err) => console.log(err));
+    }, []);
 
     return <AuthContext.Provider value={{ isLoggedIn, setIsLoggedIn }}>{children}</AuthContext.Provider>;
 };

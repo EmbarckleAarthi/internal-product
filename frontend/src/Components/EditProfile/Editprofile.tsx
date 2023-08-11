@@ -1,5 +1,6 @@
 import './style.scss';
 
+import axios from 'axios';
 import { Field, FieldArray, FormikProvider, useFormik } from 'formik';
 import React from 'react';
 
@@ -61,7 +62,10 @@ export const Editprofile = () => {
         },
 
         onSubmit: (values) => {
-            console.log(JSON.stringify(values, null, 2));
+            axios
+                .post('user/profiledata', { values })
+                .then((res) => console.log(res.data))
+                .catch((err) => console.log(err));
         },
     });
 
@@ -441,9 +445,10 @@ export const Editprofile = () => {
                                                 type='date'
                                             />
                                             <Field id={'todate'} name={`workExperience.${index}.todate`} type='date' />
-                                            <textarea
-                                                id={'jobdescription'}
+                                            <Field
+                                                id={`jobdescription`}
                                                 name={`workExperience.${index}.jobdescription`}
+                                                as='textarea'
                                             />
                                             {index > 0 && (
                                                 <button

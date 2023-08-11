@@ -10,7 +10,9 @@ export class UserController {
     }
 
     public profileData = async (req: Request, res: Response) => {
-        console.log(req.body);
+        const dependantdetails = req.body.values.dependantDetails;
+        const educationdetails = req.body.values.educationDetails;
+        const workexperience = req.body.values.workExperience;
         const {
             employeeid,
             firstname,
@@ -30,13 +32,6 @@ export class UserController {
             designation,
             dateofjoining,
             reportingmanager,
-            name,
-            relationship,
-            relationdateofbirth,
-            institutename,
-            degree,
-            specialization,
-            dateofcompletion,
             uan,
             pan,
             aadhar,
@@ -47,12 +42,7 @@ export class UserController {
             addedtime,
             modifiedby,
             modifiedtime,
-            companyname,
-            jobtitle,
-            fromdate,
-            todate,
-            jobdescription,
-        } = req.body;
+        } = req.body.values;
         try {
             const basicinfo = await this.userService.basicdetails({
                 employeeid,
@@ -82,18 +72,10 @@ export class UserController {
                 reportingmanager,
             });
 
-            const dependentdetails = await this.userService.dependentdetails({
+            const dependentdetails = await this.userService.dependentdetails({ employeeid, dependantdetails });
+            const educationDetails = await this.userService.educationDetails({
                 employeeid,
-                name,
-                relationship,
-                relationdateofbirth,
-            });
-            const educationdetails = await this.userService.educationdetails({
-                employeeid,
-                institutename,
-                degree,
-                specialization,
-                dateofcompletion,
+                educationdetails,
             });
 
             const identityinfo = await this.userService.identityinformation({
@@ -115,13 +97,9 @@ export class UserController {
                 modifiedby,
                 modifiedtime,
             });
-            const workexperience = await this.userService.workexperience({
+            const workExperience = await this.userService.workexperience({
                 employeeid,
-                companyname,
-                jobtitle,
-                fromdate,
-                todate,
-                jobdescription,
+                workexperience,
             });
 
             if (
@@ -129,19 +107,48 @@ export class UserController {
                 workinfo &&
                 hierarchyinfo &&
                 dependentdetails &&
-                educationdetails &&
+                educationDetails &&
                 identityinfo &&
                 personaldetails &&
                 systemfields &&
-                workexperience
+                workExperience
             ) {
                 res.send('profile data added');
             } else {
                 res.send('cannot add profile data');
             }
         } catch (err) {
-            console.log(err);
             res.status(500).send({ message: 'unable to find user' });
+        }
+    };
+
+    public getUserData = async (req: Request, res: Response) => {
+        const uid = req.params.id;
+
+        const basicdata = await this.userService.getBasicDetails(uid);
+        const hierarchydata = await this.userService.getHierarchyDetails(uid);
+        const identitydata = await this.userService.getIdentityDetails(uid);
+        const perdsonaldata = await this.userService.getPersonalDetails(uid);
+        const sytemfielddata = await this.userService.getSystemFields(uid);
+        const workinfodata = await this.userService.getWorkInformation(uid);
+        const workexperiencedata = await this.userService.getWorkExperience(uid);
+        const educationdata = await this.userService.getEducation(uid);
+        const dependentdata = await this.userService.getDependent(uid);
+        const userdata = {
+            basic: basicdata,
+            hierachy: hierarchydata,
+            identity: identitydata,
+            personalinfo: perdsonaldata,
+            systemfield: sytemfielddata,
+            workinfo: workinfodata,
+            workexperience: workexperiencedata,
+            educationdata: educationdata,
+            dependentdata: dependentdata,
+        };
+        if (userdata) {
+            res.status(200).send(userdata);
+        } else {
+            res.status(401).send({ msg: 'not found' });
         }
     };
 }

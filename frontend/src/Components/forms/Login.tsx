@@ -22,10 +22,10 @@ export const Login = () => {
             return;
         }
         axios
-            .post(`/auth/login`, { email, password }, { withCredentials: true })
+            .post('/auth/login', { email, password }, { withCredentials: true })
             .then((res) => {
                 auth.setIsLoggedIn(true);
-                navigate('/dashboard', { state: { username: res.data.username, role: res.data.role } });
+                navigate('/dashboard', { state: { username: res.data.username, role: res.data.role, id: res.data.id } });
             })
             .catch((err) => console.log(err));
     }

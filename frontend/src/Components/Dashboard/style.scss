@@ -1,15 +1,265 @@
-.user-details{
-    font-family: "Times New Roman", Times, serif;
-    margin: auto;
-    display:flex;
-    height: 2190px;
+.tab-header-container{
+    width: 150px;
+    height: 70px;
 }
-.work-experience-item {
-    display: flex;
-    input{
-        width: 10px;
+.container{
+    width: auto;
+}
+.header{
+    text-align: center;
+}
+#profile-button{
+    width: 150px;
+    border: none;
+    font-family: 'Times New Roman', Times, serif;
+    font-size: 25px;
+    border-left: solid 2px;
+    padding: 10px;
+    margin-top: 10px;
+}
+.navbar{
+
+    background-color: rgb(235, 231, 231);
+    height: 30px;
+#editprofile-button{
+    margin-left: 70rem;
+    text-decoration: none;
+    color: black;
+    font-size: 25px;
     }
 }
+.card{
+    width: auto;
+    height: auto;
+
+    .aboutme-card{
+        margin: auto;
+    }
+}
+
+// .card-container {
+//      display: flex;
+//      flex-wrap: wrap;
+    
+//   }
+
+  .movie-card {
+    // display: flex;
+    // flex-direction: column;
+    // align-items: center;
+    // justify-content: center;
+
+    width: 1100px;
+    height: 1900px;
+        
+        margin: "0.5rem";
+        margin-left: 160px;
+   
+  }
+
+  .card-content {
+    box-sizing: border-box;
+    width: 100%;
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    color: rgb(12, 8, 8);
+    font-family: "Times New Roman", Times, serif;
+    h2{
+        // text-align: left;
+        margin-left: 10px;
+        color: #2b0933;
+    }
+
+    #last-name{
+        margin-left: 800px;
+        margin-top: -90px;
+
+    }
+
+    #last-namelabel{
+        margin-left: 630px;
+        margin-top: -90px;
+    }
+
+    #email-address{
+        margin-left: 800px;
+        margin-top: -30px;
+     }
+
+     #email-address-label{
+        margin-left: 630px;
+        margin-top: -30px;
+     }
+
+     #aboutme{
+        margin-left: 800px;
+        margin-top: -90px;
+     }
+
+     #aboutmelabel{
+        margin-left: 630px;
+        margin-top: -90px;
+     }
+
+     #aadhar{
+        margin-left: 800px;
+        margin-top: -90px;
+    }
+
+    #aadhar-label{
+        margin-left: 630px;
+        margin-top: -90px;
+    }
+
+    #location {
+          margin-left: 800px;
+          margin-top: -300px;
+    }
+
+    #locationlabel {
+        margin-left: 630px;
+        margin-top: -300px;
+    }
+
+    #sourceofhire {
+        margin-left: 800px;
+        margin-top: -240px;
+    }
+
+    #sourcelabel{
+        margin-left: 630px;
+        margin-top: -240px;
+
+    }
+
+    #designation{
+        margin-left: 800px;
+        margin-top: -180px;
+    }
+
+    #designationlabel{
+        margin-left: 630px;
+        margin-top: -180px;
+    }
+
+    #dateofjoining{
+        margin-left: 800px;
+        margin-top: -120px;
+    }
+
+    #dateofjoininglabel{
+        margin-left: 630px;
+        margin-top: -120px;
+    }
+
+    #addedtime{
+        margin-left: 800px;
+        margin-top: -90px;
+    }
+
+    #addedtimelabel{
+        margin-left: 640px;
+        margin-top: -90px;
+    }
+
+    #modifiedtime{
+        margin-left: 800px;
+        margin-top: -30px;
+    }
+
+    #modifiedtimelabel{
+        margin-left: 630px;
+        margin-top: -30px;
+    }
+
+    #address{
+        margin-left: 800px;
+        margin-top: -125px;
+    }
+
+    #address-label{
+        margin-left: 630px;
+        margin-top: -125px;
+    }
+
+    #personalemailaddress{
+        margin-left: 800px;
+        margin-top: -50px;
+    }
+
+    #personalemailaddress-label{
+        margin-left: 630px;
+        margin-top: -50px;
+    }
+
+    #jobtitle{
+        width: 200px;
+
+    }
+
+    #fromdate{
+        width: 100px;
+    }
+
+    #todate{
+        width: 100px;
+    }
+
+
+     label{
+        // display: inline-block;
+        float: left;
+        clear: left;
+        width: 110px;
+         //text-align: right;
+        padding: 5px;
+        margin-top: 30px;
+        margin-left: 35px;
+    }
+    input {
+    //   display: inline-block;
+      float: left;
+      margin-top: 30px;
+      margin-left: 50px;
+      width: 300px;
+      height: 25px;
+      border: none;
+    //   border-bottom: 2px solid rgb(205 184 184);
+      border-radius: 10px;
+
+    }
+
+    .work-experience-item {
+        display: flex;
+    
+    
+        input{
+            width: 10px;
+        }
+    
+    }
+
+  }
+
+  .additional-text {
+    color: rgb(10, 4, 4);
+    font-size: 14px;
+  }
+
+
+.user-details{
+
+    font-family: "Times New Roman", Times, serif;
+
+    // height: 38em;
+    // width: 270em;
+    margin: auto;
+    background-color:rgb(250, 246, 246);
+    // text-align: center;
+    display:flex;
+}
+
 .education-details-item{
     display: flex;
 }
@@ -17,141 +267,18 @@
     display: flex;
 }
 #profile-form{
-    box-sizing: border-box;
-    width: 100%;
-    position: absolute;
-    display: flex;
-    flex-direction: column;
+
+   
+    // height:auto;
     h2{
-       
+        // text-align: left;
         margin-left: 10px;
         color: #2b0933;
     }
-    #last-name{
-        margin-left: 800px;
-        margin-top: -90px;
 
-    }
-    #last-namelabel{
-        margin-left: 630px;
-        margin-top: -90px;
-    }
-    #email-address{
-        margin-left: 800px;
-        margin-top: -30px;
-     }
-     #email-address-label{
-        margin-left: 630px;
-        margin-top: -30px;
-     }
-     #aboutme{
-        margin-left: 800px;
-        margin-top: -90px;
-     }
-     #aboutmelabel{
-        margin-left: 630px;
-        margin-top: -90px;
-     }
-     #aadhar{
-        margin-left: 800px;
-        margin-top: -90px;
-    }
-    #aadhar-label{
-        margin-left: 630px;
-        margin-top: -90px;
-    }
-    #location {
-          margin-left: 800px;
-          margin-top: -300px;
-    }
-    #locationlabel {
-        margin-left: 630px;
-        margin-top: -300px;
-    }
-    #sourceofhire {
-        margin-left: 800px;
-        margin-top: -240px;
-    }
-    #sourcelabel{
-        margin-left: 630px;
-        margin-top: -240px;
+    
 
-    }
-    #designation{
-        margin-left: 800px;
-        margin-top: -180px;
-    }
-    #designationlabel{
-        margin-left: 630px;
-        margin-top: -180px;
-    }
-    #dateofjoining{
-        margin-left: 800px;
-        margin-top: -120px;
-    }
-    #dateofjoininglabel{
-        margin-left: 630px;
-        margin-top: -120px;
-    }
-    #addedtime{
-        margin-left: 800px;
-        margin-top: -90px;
-    }
-    #addedtimelabel{
-        margin-left: 640px;
-        margin-top: -90px;
-    }
-    #modifiedtime{
-        margin-left: 800px;
-        margin-top: -30px;
-    }
-    #modifiedtimelabel{
-        margin-left: 630px;
-        margin-top: -30px;
-    }
-    #address{
-        margin-left: 800px;
-        margin-top: -125px;
-    }
-    #address-label{
-        margin-left: 630px;
-        margin-top: -125px;
-    }
-    #personalemailaddress{
-        margin-left: 800px;
-        margin-top: -50px;
-    }
-    #personalemailaddress-label{
-        margin-left: 630px;
-        margin-top: -50px;
-    }
-    #jobtitle{
-        width: 200px;
-    }
-    #fromdate{
-        width: 100px;
-    }
-    #todate{
-        width: 100px;
-    }
-     label{
-        float: left;
-        clear: left;
-        width: 110px;
-        padding: 5px;
-        margin-top: 30px;
-        margin-left: 35px;
-    }
-    input {
-      float: left;
-      margin-top: 30px;
-      margin-left: 50px;
-      width: 300px;
-      height: 25px;
-      border: none;
-      border-bottom: 2px solid rgb(205 184 184);
-      border-radius: 10px;
-    }
+
     button{
         text-align: center;
         width: 100px;
@@ -159,10 +286,16 @@
 
     .button-container {
         display: flex;
+        // position: fixed;
+        // bottom: -10px;
+        // right: 1100px;
+
     }
     #submit-button{
         background-color: rgb(129, 59, 194);
         color: white;
+        // float: left;
+        // clear: left;
         text-align: center;
         border: none;
         border-radius: 5px;
@@ -178,6 +311,9 @@
     #cancel-button{
         background-color: rgb(129, 59, 194);
         color: white;
+        // float: left;
+        // clear: left;
+        // text-align: center;
         border: none;
         border-radius: 5px;
         padding: 5px;
@@ -196,7 +332,7 @@
     #add-button{
         width: 30px;
         border-radius: 20px;
-        margin-left: 1099px;
+        margin-left: 1270px;
     }
 
     .work-experience-header{
@@ -209,7 +345,7 @@
     }
 
     #job-title{
-        margin-left: 140px;
+        margin-left: 230px;
 
     }
 
@@ -219,81 +355,19 @@
     }
 
     #to-date{
-        margin-left: 35px;
+        margin-left: 30px;
 
     }
 
-    #job-description {
-        margin-left: 0.25px;
-        
-      }
-      #companyname{
-        width: 15em;
-      }
-      #jobtitle{
-        width: 15em;
-      }
-    #jobdescription{
-        margin: 16px;
-        border: none;
-        border-bottom: 2px solid rgb(205, 184, 184);
-        border-radius: 10px;
-        width: 19.5em;
+    #job-description{
+        margin-left: 30px;
+
     }
-    .dependant-details-header{
-        display: flex;
-        #name{
-            margin-left: 3em;
-        }
-        #relationship{
-            margin-left: 17em;
-        }
-        #relationdateofbirth{
-            margin-left: 17em;
-        }
-    }
-    #relationdateofbirth{
-        width: 21em;
-    }
-    #relation-name{
-        width: 25em;
-    }
-    #relation-ship{
-        width: 25em;
-    }
+    
     #dateofcompletion{
         width: 200px;
     }
-    #institute{
-        width: 18rem;
-    }
-    #degree-1{
-        width: 10rem;
-    }
-    #specialization-1{
-        width: 15rem;
-    }
-    #institute-name{
-        margin-left: 3rem;
-    }
-    #degree{
-        margin-left: 14.5rem;
-    }
-    #specialization{
-        margin-left: 7.5rem;
-    }
-    #date-of-completion{
-        margin-left: 11rem;
-        width: 30rem;
-    }
-    // footer {
-    //     position:fixed;
-    //     bottom:0;
-    //     left:0;
-    //     margin-top: 200px;
-    //     // width:100%;
-    //     // height: 90px;
-    //     // background-color: #D0DAEE;
-    //   }
     
+
+
 }

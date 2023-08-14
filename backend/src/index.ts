@@ -4,7 +4,7 @@ import express, { Express } from 'express';
 import helmet from 'helmet';
 import hpp from 'hpp';
 
-import { config } from './config';
+import { config } from './Config';
 import { routes } from './RouterConfig';
 
 export class App {

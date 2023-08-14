@@ -134,13 +134,14 @@ export class UserController {
         const workexperiencedata = await this.userService.getWorkExperience(uid);
         const educationdata = await this.userService.getEducation(uid);
         const dependentdata = await this.userService.getDependent(uid);
+
         const userdata = {
-            basic: basicdata,
-            hierachy: hierarchydata,
-            identity: identitydata,
-            personalinfo: perdsonaldata,
-            systemfield: sytemfielddata,
-            workinfo: workinfodata,
+            ...basicdata[0],
+            ...hierarchydata[0],
+            ...identitydata[0],
+            ...perdsonaldata[0],
+            ...sytemfielddata[0],
+            ...workinfodata[0],
             workexperience: workexperiencedata,
             educationdata: educationdata,
             dependentdata: dependentdata,

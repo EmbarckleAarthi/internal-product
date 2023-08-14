@@ -1,7 +1,7 @@
 import nodemailer, { SendMailOptions, Transporter } from 'nodemailer';
 import SMTPTransport from 'nodemailer/lib/smtp-transport';
 
-import { config } from '../config';
+import { config } from '../Config';
 
 export class MailService {
     private transporter: Transporter<SMTPTransport.SentMessageInfo>;

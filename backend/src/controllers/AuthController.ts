@@ -4,7 +4,7 @@ import jwt from 'jsonwebtoken';
 
 import { INewUser } from '@common/interface';
 
-import { config } from '../config';
+import { config } from '../Config';
 import { AuthService, MailService } from '../services';
 import { verifyJwt } from '../utils';
 import { generateToken } from '../utils/GenerateToken';
@@ -85,7 +85,12 @@ export class AuthController {
                     httpOnly: true,
                     sameSite: 'lax',
                 });
-                res.status(200).send({ msg: 'success', username: user.username, role: user.role,id:user.employee_id });
+                res.status(200).send({
+                    msg: 'success',
+                    username: user.username,
+                    role: user.role,
+                    id: user.employee_id,
+                });
             } else {
                 res.status(401).send({ message: 'Invalid credentials' });
             }

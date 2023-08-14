@@ -1,6 +1,6 @@
 import mysql from 'mysql';
 
-import { config } from '../Config';
+import { config } from '../config';
 
 export const database = mysql.createConnection({
     host: config.database.host,

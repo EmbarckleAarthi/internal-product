@@ -33,19 +33,18 @@ export const Dashboard: React.FC = () => {
     const handleLogOut = () => {
         axios
             .get('/auth/logout')
-            // .then(() => auth.setIsLoggedIn(false))
             .then(() => navigate('/'))
             .catch((err) => console.log(err));
     };
     const handleAddUser = () => {
         navigate('/signupform');
     };
-
     const handleEdit = () => {
         navigate('/editprofile');
     };
 
     return (
+    
         <div>
             <div className='header'>
                 <h1>Welcome {location.state.username}</h1>
@@ -53,13 +52,15 @@ export const Dashboard: React.FC = () => {
                     <a href='/editprofile' id='editprofile-button'>
                         Add
                     </a>
-                </div>
+                    <button id='logout-button' onClick={handleLogOut}>Logout</button>
+                
             </div>
             <div className='tab-header-container'>
                 <button id='profile-button'>Profile</button>
 
-                <button onClick={handleLogOut}>Logout</button>
-                {location.state.role === 'admin' ? <button onClick={handleAddUser}>Add user</button> : <></>}
+               
+                {location.state.role === 'admin' ? <button id='adduser-button' onClick={handleAddUser}>Add user</button> : <></>}
+                </div>
             </div>
 
             <div className='card-container'>
@@ -202,15 +203,108 @@ export const Dashboard: React.FC = () => {
                                         Added Time : {activeTab?.added_time ?? ''}
                                     </label>
 
-                                    <label id='modifiedtimelabel' htmlFor='modifiedtime'>
-                                        Modified Time : {activeTab?.modified_time ?? ''}
-                                    </label>
-                                </div>
-                            </>
-                        )}
-                    </CardContent>
-                </Card>
-            </div>
+                                <label id='modifiedtimelabel' htmlFor='modifiedtime'>
+                                    Modified Time : {activeTab?.modified_time ?? ''}
+                                </label>
+                            </div>
+
+                            
+                            <div className='work-experience'> 
+  <h2>Work Experience</h2>
+  <div className="work-experience-header">
+    <label htmlFor='company-name' id='company-name'>Company name</label>
+    <label id='job-title'>Job Title</label>
+    <label id='from-date'>From Date</label>
+    <label id='to-date'>To Date</label>
+    <label id='job-description'>Job Description</label>
+  </div>
+  {activeTab?.workexperience && (
+    activeTab.workexperience.map((experience: { company_name: any; job_title: any; from_date: any; to_date: any; job_description: any; }, index: React.Key | null | undefined) => (
+      <div className="work-experience-item" key={index}>
+        <label htmlFor='company-name' id='company-name'>
+          {experience.company_name ?? ""}
+        </label>
+        <label id='job-title'>
+          {experience.job_title ?? ""}
+        </label>
+        <label id='from-date'>
+          {experience.from_date ?? ""}
+        </label>
+        <label id='to-date'>
+          {experience.to_date ?? ""}
+        </label>
+        <label id='job-description'>
+          {experience.job_description ?? ""}
+        </label>
+      </div>
+    ))
+  )}
+</div>
+
+
+
+<div className='education-details'> 
+  <h2>Education Details</h2>
+  <div className="education-details-header">
+    <label htmlFor='institute' id='institute'>Institute</label>
+    <label id='degree'>Degree</label>
+    <label id='specialization'>Specialization</label>
+    <label id='dateof-completion'>Date Of Completion</label>
+  </div>
+  {activeTab?.educationdata && (
+    activeTab.educationdata.map((education: { institute_name: any; degree: any; specialization: any; completion_date: any; }, index: React.Key | null | undefined) => (
+      <div className="education-details-item" key={index}>
+        <label htmlFor='institute' id='institute'>
+          {education.institute_name ?? ""}
+        </label>
+        <label id='degree'>
+          {education.degree ?? ""}
+        </label>
+        <label id='specialization'>
+          {education.specialization ?? ""}
+        </label>
+        <label id='dateof-completion'>
+          {education.completion_date ?? ""}
+        </label>
+      </div>
+    ))
+  )}
+</div>
+
+
+
+<div className='dependant-details'>
+  <h2>Dependant Details</h2>
+  <div className="dependant-details-header">
+    <label htmlFor='name' id='name'>Name</label>
+    <label id='relationship'>Relationship</label>
+    <label id='relation_birthday'>Relation Date Of Birth</label>
+  </div>
+  {activeTab?.dependentdata && (
+    activeTab.dependentdata.map((dependent: { name: any; relationship: any; relation_birthday: any; }, index: React.Key | null | undefined) => (
+      <div className="dependant-details-item" key={index}>
+        <label htmlFor='name' id='name'>
+          {dependent.name ?? ""}
+        </label>
+        <label id='relationship'>
+          {dependent.relationship ?? ""}
+        </label>
+        <label id='relation_birthday'>
+          {dependent.relation_birthday ?? ""}
+        </label>
+      </div>
+    ))
+  )}
+</div>
+</>)}
+      </CardContent>
+     
+      </Card>
+    
+   
+    
+
+</div>
         </div>
     );
 };

@@ -4,7 +4,7 @@ import jwt from 'jsonwebtoken';
 
 import { INewUser } from '@common/interface';
 
-import { config } from '../Config';
+import { config } from '../config';
 import { AuthService, MailService } from '../services';
 import { verifyJwt } from '../utils';
 import { generateToken } from '../utils/GenerateToken';

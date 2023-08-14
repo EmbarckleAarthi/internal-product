@@ -1,7 +1,7 @@
-import { AuthRoute, UserRoute } from './routes';
+import { AdminRoute, AuthRoute, UserRoute } from './routes';
 
 // Update Router types
-export type Routers = AuthRoute | UserRoute;
+export type Routers = AuthRoute | UserRoute | AdminRoute;
 
 interface IRoutesConfigurations {
     path: string;
@@ -17,5 +17,9 @@ export const routes: IRoutesConfigurations[] = [
     {
         path: '/user',
         router: new UserRoute(),
+    },
+    {
+        path: '/admin',
+        router: new AdminRoute(),
     },
 ];

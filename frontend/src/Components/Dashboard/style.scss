@@ -1,14 +1,14 @@
-.tab-header-container{
+.tab-header-container {
     width: 150px;
     height: 70px;
 }
-.container{
+.container {
     width: auto;
 }
-.header{
+.header {
     text-align: center;
 }
-#profile-button{
+#profile-button {
     width: 150px;
     border: none;
     font-family: 'Times New Roman', Times, serif;
@@ -17,22 +17,21 @@
     padding: 10px;
     margin-top: 10px;
 }
-.navbar{
-
+.navbar {
     background-color: rgb(235, 231, 231);
     height: 30px;
-#editprofile-button{
-    margin-left: 70rem;
-    text-decoration: none;
-    color: black;
-    font-size: 25px;
+    #editprofile-button {
+        margin-left: 70rem;
+        text-decoration: none;
+        color: black;
+        font-size: 25px;
     }
 }
-.card{
+.card {
     width: auto;
     height: auto;
 
-    .aboutme-card{
+    .aboutme-card {
         margin: auto;
     }
 }
@@ -40,10 +39,10 @@
 // .card-container {
 //      display: flex;
 //      flex-wrap: wrap;
-    
+
 //   }
 
-  .movie-card {
+.movie-card {
     // display: flex;
     // flex-direction: column;
     // align-items: center;
@@ -51,70 +50,85 @@
 
     width: 1100px;
     height: 1900px;
-        
-        margin: "0.5rem";
-        margin-left: 160px;
-   
-  }
 
-  .card-content {
+    margin: '0.5rem';
+    margin-left: 160px;
+}
+
+.card-content {
     box-sizing: border-box;
     width: 100%;
     position: absolute;
     display: flex;
     flex-direction: column;
     color: rgb(12, 8, 8);
-    font-family: "Times New Roman", Times, serif;
-    h2{
+    font-family: 'Times New Roman', Times, serif;
+
+    .admin-card {
+        table {
+            .table-heading {
+                .heading-content {
+                    font-weight: bolder;
+                }
+            }
+            padding: 5px;
+
+            td,
+            tr {
+                padding: 15px;
+            }
+        }
+    }
+
+    h2 {
         // text-align: left;
         margin-left: 10px;
         color: #2b0933;
     }
 
-    #last-name{
+    #last-name {
         margin-left: 800px;
         margin-top: -90px;
-
     }
 
-    #last-namelabel{
+    #last-namelabel {
         margin-left: 630px;
         margin-top: -90px;
     }
 
-    #email-address{
+    #email-address {
         margin-left: 800px;
         margin-top: -30px;
-     }
+    }
 
-     #email-address-label{
+    #email-address-label {
         margin-left: 630px;
         margin-top: -30px;
-     }
+    }
 
-     #aboutme{
-        margin-left: 800px;
-        margin-top: -90px;
-     }
-
-     #aboutmelabel{
-        margin-left: 630px;
-        margin-top: -90px;
-     }
-
-     #aadhar{
+    #aboutme {
         margin-left: 800px;
         margin-top: -90px;
     }
 
-    #aadhar-label{
+    #aboutmelabel {
+        margin-left: 630px;
+        margin-top: -90px;
+    }
+
+    #aadhar {
+        margin-left: 800px;
+        margin-top: -90px;
+    }
+
+    #aadhar-label {
         margin-left: 630px;
         margin-top: -90px;
     }
 
     #location {
-          margin-left: 800px;
-          margin-top: -300px;
+        margin-left: 800px;
+        margin-top: -300px;
     }
 
     #locationlabel {
@@ -127,159 +141,145 @@
         margin-top: -240px;
     }
 
-    #sourcelabel{
+    #sourcelabel {
         margin-left: 630px;
         margin-top: -240px;
-
     }
 
-    #designation{
+    #designation {
         margin-left: 800px;
         margin-top: -180px;
     }
 
-    #designationlabel{
+    #designationlabel {
         margin-left: 630px;
         margin-top: -180px;
     }
 
-    #dateofjoining{
+    #dateofjoining {
         margin-left: 800px;
         margin-top: -120px;
     }
 
-    #dateofjoininglabel{
+    #dateofjoininglabel {
         margin-left: 630px;
         margin-top: -120px;
     }
 
-    #addedtime{
+    #addedtime {
         margin-left: 800px;
         margin-top: -90px;
     }
 
-    #addedtimelabel{
+    #addedtimelabel {
         margin-left: 640px;
         margin-top: -90px;
     }
 
-    #modifiedtime{
+    #modifiedtime {
         margin-left: 800px;
         margin-top: -30px;
     }
 
-    #modifiedtimelabel{
+    #modifiedtimelabel {
         margin-left: 630px;
         margin-top: -30px;
     }
 
-    #address{
+    #address {
         margin-left: 800px;
         margin-top: -125px;
     }
 
-    #address-label{
+    #address-label {
         margin-left: 630px;
         margin-top: -125px;
     }
 
-    #personalemailaddress{
+    #personalemailaddress {
         margin-left: 800px;
         margin-top: -50px;
     }
 
-    #personalemailaddress-label{
+    #personalemailaddress-label {
         margin-left: 630px;
         margin-top: -50px;
     }
 
-    #jobtitle{
+    #jobtitle {
         width: 200px;
-
     }
 
-    #fromdate{
+    #fromdate {
         width: 100px;
     }
 
-    #todate{
+    #todate {
         width: 100px;
     }
 
-
-     label{
+    label {
         // display: inline-block;
         float: left;
         clear: left;
         width: 110px;
-         //text-align: right;
+        //text-align: right;
         padding: 5px;
         margin-top: 30px;
         margin-left: 35px;
     }
     input {
-    //   display: inline-block;
-      float: left;
-      margin-top: 30px;
-      margin-left: 50px;
-      width: 300px;
-      height: 25px;
-      border: none;
-    //   border-bottom: 2px solid rgb(205 184 184);
-      border-radius: 10px;
-
+        //   display: inline-block;
+        float: left;
+        margin-top: 30px;
+        margin-left: 50px;
+        width: 300px;
+        height: 25px;
+        border: none;
+        //   border-bottom: 2px solid rgb(205 184 184);
+        border-radius: 10px;
     }
 
     .work-experience-item {
         display: flex;
-    
-    
-        input{
+
+        input {
             width: 10px;
         }
-    
     }
+}
 
-  }
-
-  .additional-text {
+.additional-text {
     color: rgb(10, 4, 4);
     font-size: 14px;
-  }
+}
 
-
-.user-details{
-
-    font-family: "Times New Roman", Times, serif;
+.user-details {
+    font-family: 'Times New Roman', Times, serif;
 
     // height: 38em;
     // width: 270em;
     margin: auto;
-    background-color:rgb(250, 246, 246);
+    background-color: rgb(250, 246, 246);
     // text-align: center;
-    display:flex;
-}
-
-.education-details-item{
     display: flex;
 }
-.dependant-details-item{
+
+.education-details-item {
     display: flex;
 }
-#profile-form{
-
-   
+.dependant-details-item {
+    display: flex;
+}
+#profile-form {
     // height:auto;
-    h2{
+    h2 {
         // text-align: left;
         margin-left: 10px;
         color: #2b0933;
     }
 
-    
-
-
-    button{
+    button {
         text-align: center;
         width: 100px;
     }
@@ -289,9 +289,8 @@
         // position: fixed;
         // bottom: -10px;
         // right: 1100px;
-
     }
-    #submit-button{
+    #submit-button {
         background-color: rgb(129, 59, 194);
         color: white;
         // float: left;
@@ -304,11 +303,8 @@
         margin-top: 20px;
         margin-bottom: 10px;
         height: 35px;
-
-
-
     }
-    #cancel-button{
+    #cancel-button {
         background-color: rgb(129, 59, 194);
         color: white;
         // float: left;
@@ -322,52 +318,44 @@
         margin-bottom: 10px;
     }
 
-    #remove-button{
+    #remove-button {
         width: 30px;
         border-radius: 20px;
         height: 30px;
         margin-top: 10px;
     }
 
-    #add-button{
+    #add-button {
         width: 30px;
         border-radius: 20px;
         margin-left: 1270px;
     }
 
-    .work-experience-header{
+    .work-experience-header {
         display: flex;
     }
 
-    #company-name{
+    #company-name {
         margin-left: 50px;
-
     }
 
-    #job-title{
+    #job-title {
         margin-left: 230px;
-
     }
 
-    #from-date{
+    #from-date {
         margin-left: 140px;
-
     }
 
-    #to-date{
+    #to-date {
         margin-left: 30px;
-
     }
 
-    #job-description{
+    #job-description {
         margin-left: 30px;
-
     }
-    
-    #dateofcompletion{
+
+    #dateofcompletion {
         width: 200px;
     }
-    
-
-
 }

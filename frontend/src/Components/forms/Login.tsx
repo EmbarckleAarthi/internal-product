@@ -25,7 +25,9 @@ export const Login = () => {
             .post('/auth/login', { email, password }, { withCredentials: true })
             .then((res) => {
                 auth.setIsLoggedIn(true);
-                navigate('/dashboard', { state: { username: res.data.username, role: res.data.role, id: res.data.id } });
+                navigate('/dashboard', {
+                    state: { username: res.data.username, role: res.data.role, id: res.data.id },
+                });
             })
             .catch((err) => console.log(err));
     }

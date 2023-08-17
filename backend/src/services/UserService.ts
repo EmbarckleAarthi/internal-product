@@ -1,3 +1,15 @@
+import {
+    IBasicDetails,
+    IDependentDetails,
+    IEducationDetails,
+    IHierarchyDetails,
+    IIdentityDetails,
+    IPersonalDetails,
+    ISystemFields,
+    IWorkDetails,
+    IWorkExperience,
+} from '@common/interface';
+
 import { database } from '../database';
 
 export class UserService {
@@ -10,7 +22,7 @@ export class UserService {
         personalmobilenumber,
         personalemailaddress,
         address,
-    }): Promise<string> {
+    }: IBasicDetails): Promise<string> {
         return new Promise((resolve, reject) => {
             database.query(
                 `INSERT INTO basic_information values(?,?,?,?,?,?,?,?)`,
@@ -46,7 +58,7 @@ export class UserService {
         sourceofhire,
         designation,
         dateofjoining,
-    }): Promise<string> {
+    }: IWorkDetails): Promise<string> {
         return new Promise((resolve, reject) => {
             database.query(
                 `INSERT INTO work_information values(?,?,?,?,?,?,?,?,?,?)`,
@@ -73,7 +85,7 @@ export class UserService {
         });
     }
 
-    public async hierarchyinformation({ employeeid, reportingmanager }): Promise<string> {
+    public async hierarchyinformation({ employeeid, reportingmanager }: IHierarchyDetails): Promise<string> {
         return new Promise((resolve, reject) => {
             database.query(`INSERT INTO hierarchy_info values(?,?)`, [employeeid, reportingmanager], (err) => {
                 if (err) {
@@ -85,7 +97,7 @@ export class UserService {
         });
     }
 
-    public async dependentdetails({ employeeid, dependantdetails }): Promise<string[]> {
+    public async dependentdetails({ employeeid, dependantdetails }: IDependentDetails) {
         return Promise.all(
             dependantdetails.map((item) => {
                 new Promise((resolve, reject) => {
@@ -96,7 +108,7 @@ export class UserService {
                         item.relationdateofbirth,
                     ]);
                     if (res) {
-                        resolve('data inserted');
+                        resolve('');
                     } else {
                         reject('not fulfilled');
                     }
@@ -105,10 +117,10 @@ export class UserService {
         );
     }
 
-    public async educationDetails({ employeeid, educationdetails }): Promise<string[]> {
+    public async educationDetails({ employeeid, educationdetails }: IEducationDetails): Promise<string[]> {
         return Promise.all(
-            educationdetails.map((item) => {
-                new Promise((resolve, reject) => {
+            educationdetails.map<Promise<string>>((item) => {
+                return new Promise((resolve, reject) => {
                     const res = database.query(`INSERT INTO education_details values(?,?,?,?,?)`, [
                         employeeid,
                         item.institutename,
@@ -117,19 +129,19 @@ export class UserService {
                         item.dateofcompletion,
                     ]);
                     if (res) {
-                        resolve('data inserted');
+                        return resolve('data inserted');
                     } else {
-                        reject('not fulfilled');
+                        return reject('not fulfilled');
                     }
                 });
             })
         );
     }
 
-    public async workexperience({ employeeid, workexperience }): Promise<string[]> {
+    public async workexperience({ employeeid, workexperience }: IWorkExperience): Promise<string[]> {
         return Promise.all(
-            workexperience.map((item) => {
-                new Promise((resolve, reject) => {
+            workexperience.map<Promise<string>>((item) => {
+                return new Promise((resolve, reject) => {
                     const res = database.query(`INSERT INTO work_experience values(?,?,?,?,?,?)`, [
                         employeeid,
                         item.companyname,
@@ -148,7 +160,7 @@ export class UserService {
         );
     }
 
-    public async identityinformation({ employeeid, uan, pan, aadhar }): Promise<string> {
+    public async identityinformation({ employeeid, uan, pan, aadhar }: IIdentityDetails): Promise<string> {
         return new Promise((resolve, reject) => {
             database.query(`INSERT INTO identity_info values (?,?,?,?)`, [employeeid, uan, pan, aadhar], (err) => {
                 if (err) {
@@ -159,7 +171,12 @@ export class UserService {
             });
         });
     }
-    public async personaldetails({ employeeid, dateofbirth, maritalstatus, aboutme }): Promise<string> {
+    public async personaldetails({
+        employeeid,
+        dateofbirth,
+        maritalstatus,
+        aboutme,
+    }: IPersonalDetails): Promise<string> {
         return new Promise((resolve, reject) => {
             database.query(
                 `INSERT INTO personal_details values (?,?,?,?)`,
@@ -175,7 +192,13 @@ export class UserService {
         });
     }
 
-    public async systemfields({ employeeid, addedby, addedtime, modifiedby, modifiedtime }): Promise<string> {
+    public async systemfields({
+        employeeid,
+        addedby,
+        addedtime,
+        modifiedby,
+        modifiedtime,
+    }: ISystemFields): Promise<string> {
         return new Promise((resolve, reject) => {
             database.query(
                 `INSERT INTO system_fields values (?,?,?,?,?)`,
@@ -190,30 +213,8 @@ export class UserService {
             );
         });
     }
-    public async workExperience({
-        employeeid,
-        companyname,
-        jobtitle,
-        fromdate,
-        todate,
-        jobdescription,
-    }): Promise<string> {
-        return new Promise((resolve, reject) => {
-            database.query(
-                `INSERT INTO work_experience values (?,?,?,?,?,?)`,
-                [employeeid, companyname, jobtitle, fromdate, todate, jobdescription],
-                (err) => {
-                    if (err) {
-                        reject(err);
-                    } else {
-                        resolve('work experience added');
-                    }
-                }
-            );
-        });
-    }
 
-    public async getBasicDetails(employeeid) {
+    public async getBasicDetails(employeeid: string) {
         return new Promise((resolve, reject) => {
             database.query(`SELECT * FROM basic_information where employee_id = "${employeeid}"`, (err, result) => {
                 if (err) {
@@ -225,7 +226,7 @@ export class UserService {
         });
     }
 
-    public async getHierarchyDetails(employeeid) {
+    public async getHierarchyDetails(employeeid: string) {
         return new Promise((resolve, reject) => {
             database.query(`SELECT * FROM hierarchy_info where employee_id = "${employeeid}"`, (err, result) => {
                 if (err) {
@@ -237,7 +238,7 @@ export class UserService {
         });
     }
 
-    public async getIdentityDetails(employeeid) {
+    public async getIdentityDetails(employeeid: string) {
         return new Promise((resolve, reject) => {
             database.query(`SELECT * FROM identity_info where employee_id = "${employeeid}"`, (err, result) => {
                 if (err) {
@@ -249,7 +250,7 @@ export class UserService {
         });
     }
 
-    public async getPersonalDetails(employeeid) {
+    public async getPersonalDetails(employeeid: string) {
         return new Promise((resolve, reject) => {
             database.query(`SELECT * FROM personal_details where employee_id = "${employeeid}"`, (err, result) => {
                 if (err) {
@@ -260,7 +261,7 @@ export class UserService {
             });
         });
     }
-    public async getSystemFields(employeeid) {
+    public async getSystemFields(employeeid: string) {
         return new Promise((resolve, reject) => {
             database.query(`SELECT * FROM system_fields where employee_id = "${employeeid}"`, (err, result) => {
                 if (err) {
@@ -271,7 +272,7 @@ export class UserService {
             });
         });
     }
-    public async getWorkInformation(employeeid) {
+    public async getWorkInformation(employeeid: string) {
         return new Promise((resolve, reject) => {
             database.query(`SELECT * FROM work_information where employee_id = "${employeeid}"`, (err, result) => {
                 if (err) {
@@ -283,7 +284,7 @@ export class UserService {
         });
     }
 
-    public async getWorkExperience(employeeid) {
+    public async getWorkExperience(employeeid: string) {
         return new Promise((resolve, reject) => {
             database.query(`SELECT * FROM work_experience where employee_id = "${employeeid}"`, (err, result) => {
                 if (err) {
@@ -295,7 +296,7 @@ export class UserService {
         });
     }
 
-    public async getEducation(employeeid) {
+    public async getEducation(employeeid: string) {
         return new Promise((resolve, reject) => {
             database.query(`SELECT * FROM education_details where employee_id = "${employeeid}"`, (err, result) => {
                 if (err) {
@@ -306,7 +307,7 @@ export class UserService {
             });
         });
     }
-    public async getDependent(employeeid) {
+    public async getDependent(employeeid: string) {
         return new Promise((resolve, reject) => {
             database.query(`SELECT * FROM dependent_details where employee_id = "${employeeid}"`, (err, result) => {
                 if (err) {

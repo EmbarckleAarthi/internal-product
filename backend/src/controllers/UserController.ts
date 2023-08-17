@@ -1,5 +1,17 @@
 import { Request, Response } from 'express';
 
+import {
+    IBasicDetails,
+    IDependentDetails,
+    IEducationDetails,
+    IHierarchyDetails,
+    IIdentityDetails,
+    IPersonalDetails,
+    ISystemFields,
+    IWorkDetails,
+    IWorkExperience,
+} from '@common/interface';
+
 import { UserService } from '../services';
 
 export class UserController {
@@ -10,9 +22,9 @@ export class UserController {
     }
 
     public profileData = async (req: Request, res: Response) => {
-        const dependantdetails = req.body.values.dependantDetails;
-        const educationdetails = req.body.values.educationDetails;
-        const workexperience = req.body.values.workExperience;
+        const dependantdetails: IDependentDetails['dependantdetails'] = req.body.values.dependantDetails;
+        const educationdetails: IEducationDetails['educationdetails'] = req.body.values.educationDetails;
+        const workexperience: IWorkExperience['workexperience'] = req.body.values.workExperience;
         const {
             employeeid,
             firstname,
@@ -42,7 +54,13 @@ export class UserController {
             addedtime,
             modifiedby,
             modifiedtime,
-        } = req.body.values;
+        }: IBasicDetails &
+            IHierarchyDetails &
+            IHierarchyDetails &
+            IIdentityDetails &
+            IPersonalDetails &
+            ISystemFields &
+            IWorkDetails = req.body.values;
         try {
             const basicinfo = await this.userService.basicdetails({
                 employeeid,

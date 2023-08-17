@@ -40,7 +40,7 @@ export class App {
         this.app.use(
             cors({
                 credentials: true,
-                origin: 'https://localhost:1234',
+                origin: 'http://localhost:1234',
             })
         );
     }

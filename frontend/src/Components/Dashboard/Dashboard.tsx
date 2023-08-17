@@ -33,7 +33,7 @@ export const Dashboard: React.FC = () => {
     console.log('ad', adminData);
     const handleLogOut = () => {
         axios
-            .get('/auth/logout')
+            .get('/auth/logout', { withCredentials: true })
             .then(() => navigate('/'))
             .catch((err) => console.log(err));
     };

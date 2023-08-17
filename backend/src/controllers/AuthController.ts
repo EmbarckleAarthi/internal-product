@@ -35,10 +35,9 @@ export class AuthController {
 
     public logOut = async (req: Request, res: Response) => {
         res.clearCookie('accesstoken', {
-            expires: new Date(Date.now()),
-            path: '/currentUser',
             httpOnly: true,
-            sameSite: 'lax',
+            secure: true,
+            sameSite: 'none',
         });
         res.status(200).send({ message: 'cookie cleared' });
     };
@@ -81,9 +80,9 @@ export class AuthController {
                 res.cookie('accesstoken', token, {
                     expires: new Date(Date.now() + 60 * 60 * 24 * 1000 * 7),
                     maxAge: 1000 * 60 * 60 * 24,
-                    path: '/currentUser',
                     httpOnly: true,
-                    sameSite: 'lax',
+                    sameSite: 'none',
+                    secure: true,
                 });
                 res.status(200).send({
                     msg: 'success',

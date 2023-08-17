@@ -330,7 +330,7 @@ export class UserService {
     }): Promise<string> {
         return new Promise((resolve, reject) => {
             database.query(
-                `UPDATE basic_information SET employee_id= '${employeeid}'
+                `UPDATE basic_information SET employee_id= '${employeeid}',
                  first_name='${firstname}', last_name='${lastname}',email='${email}',work_phonenumber='${workphonenumber}',
                  personal_mobilenumber='${personalmobilenumber}',personal_email='${personalemailaddress}',address='${address}'
                  where employee_id='${employeeid}'`,

@@ -22,7 +22,9 @@ export const AuthProvider: React.FC<PropsWithChildren> = ({ children }) => {
             .then((res) => {
                 setIsLoggedIn(res.data.loggedIn);
 
-                navigate('/dashboard', { state: { username: res.data.username } });
+                navigate('/dashboard', {
+                    state: { username: res.data.username, id: res.data.id, role: res.data.role },
+                });
                 console.log(res.data.loggedIn);
             })
             .catch((err) => console.log(err));

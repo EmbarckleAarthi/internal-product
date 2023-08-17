@@ -11,12 +11,11 @@ export const Editprofile = () => {
     const navigate = useNavigate();
     const location = useLocation();
     const id = location.state.id;
+    console.log(id);
     const [isFieldsDisabled, setIsFieldsDisabled] = useState(false);
     const disable = location.state.role;
-    // useEffect(() => {
-    //     setIsFieldsDisabled(location.state.role === 'user');
-    // }, [location.state.role]);
-
+    const checkData = axios.get(`user/checkuser/${id}`);
+    console.log(checkData);
     useEffect(() => {
         axios
             .get(`user/getuserdata/${id}`)
@@ -90,12 +89,13 @@ export const Editprofile = () => {
 
         onSubmit: (values) => {
             axios
-                .post('user/editprofile', { values })
+                .post('user/profiledata', { values })
                 .then((res) => console.log(res.data))
                 .catch((err) => console.log(err));
         },
         enableReinitialize: true,
     });
+
     const handleCancel = () => {
         navigate('/dashboard');
     };
@@ -113,7 +113,6 @@ export const Editprofile = () => {
                             name='employeeid'
                             value={formik.values.employeeid}
                             onChange={formik.handleChange}
-                            // disabled={isFieldsDisabled}
                             required
                         />
 
@@ -124,7 +123,6 @@ export const Editprofile = () => {
                             name='firstname'
                             value={formik.values.firstname}
                             onChange={formik.handleChange}
-                            // disabled={isFieldsDisabled}
                             required
                         />
 
@@ -137,7 +135,6 @@ export const Editprofile = () => {
                             name='lastname'
                             value={formik.values.lastname}
                             onChange={formik.handleChange}
-                            // disabled={isFieldsDisabled}
                             required
                         />
 
@@ -150,7 +147,6 @@ export const Editprofile = () => {
                             name='email'
                             value={formik.values.email}
                             onChange={formik.handleChange}
-                            // disabled={isFieldsDisabled}
                             required
                         />
                     </div>
@@ -165,7 +161,6 @@ export const Editprofile = () => {
                             name='businessunit'
                             value={formik.values.businessunit}
                             onChange={formik.handleChange}
-                            // disabled={isFieldsDisabled}
                             required
                         />
 
@@ -176,7 +171,6 @@ export const Editprofile = () => {
                             name='division'
                             value={formik.values.division}
                             onChange={formik.handleChange}
-                            // disabled={isFieldsDisabled}
                             required
                         />
 
@@ -187,7 +181,6 @@ export const Editprofile = () => {
                             name='employmenttype'
                             value={formik.values.employmenttype}
                             onChange={formik.handleChange}
-                            // disabled={isFieldsDisabled}
                             required
                         />
 
@@ -198,7 +191,6 @@ export const Editprofile = () => {
                             name='department'
                             value={formik.values.department}
                             onChange={formik.handleChange}
-                            // disabled={isFieldsDisabled}
                             required
                         />
 
@@ -209,7 +201,6 @@ export const Editprofile = () => {
                             name='employmentstatus'
                             value={formik.values.employmentstatus}
                             onChange={formik.handleChange}
-                            // disabled={isFieldsDisabled}
                             required
                         />
                         <label id='locationlabel' htmlFor='location'>
@@ -221,7 +212,6 @@ export const Editprofile = () => {
                             name='location'
                             value={formik.values.location}
                             onChange={formik.handleChange}
-                            // disabled={isFieldsDisabled}
                             required
                         />
                         <label id='sourcelabel' htmlFor='sourceofhire'>
@@ -233,7 +223,6 @@ export const Editprofile = () => {
                             name='sourceofhire'
                             value={formik.values.sourceofhire}
                             onChange={formik.handleChange}
-                            // disabled={isFieldsDisabled}
                             required
                         />
                         <label id='designationlabel' htmlFor='designation'>
@@ -245,7 +234,6 @@ export const Editprofile = () => {
                             name='designation'
                             value={formik.values.designation}
                             onChange={formik.handleChange}
-                            // disabled={isFieldsDisabled}
                             required
                         />
                         <label id='dateofjoininglabel' htmlFor='dateofjoining'>
@@ -257,7 +245,6 @@ export const Editprofile = () => {
                             name='dateofjoining'
                             value={formik.values.dateofjoining}
                             onChange={formik.handleChange}
-                            // disabled={isFieldsDisabled}
                             max={maxDate}
                         />
                     </div>
@@ -272,7 +259,6 @@ export const Editprofile = () => {
                             name='reportingmanager'
                             value={formik.values.reportingmanager}
                             onChange={formik.handleChange}
-                            // disabled={isFieldsDisabled}
                             required
                         />
                     </div>
@@ -288,7 +274,6 @@ export const Editprofile = () => {
                             value={formik.values.dateofbirth}
                             onChange={formik.handleChange}
                             max={maxDate}
-                            // disabled={isFieldsDisabled}
                             required
                         />
                         <label htmlFor='maritalstatus'>Marital Status</label>
@@ -298,7 +283,6 @@ export const Editprofile = () => {
                             name='maritalstatus'
                             value={formik.values.maritalstatus}
                             onChange={formik.handleChange}
-                            // disabled={isFieldsDisabled}
                             required
                         />
                         <label id='aboutmelabel' htmlFor='aboutme'>
@@ -381,7 +365,6 @@ export const Editprofile = () => {
                             name='personalemailaddress'
                             value={formik.values.personalemailaddress}
                             onChange={formik.handleChange}
-                            // disabled={isFieldsDisabled}
                             required
                         />
                         <label id='address-label' htmlFor='address'>
@@ -407,7 +390,6 @@ export const Editprofile = () => {
                             name='addedby'
                             value={formik.values.addedby}
                             onChange={formik.handleChange}
-                            // disabled={isFieldsDisabled}
                             required
                         />
                         <label htmlFor='modifiedby'>Modified By</label>
@@ -417,7 +399,6 @@ export const Editprofile = () => {
                             name='modifiedby'
                             value={formik.values.modifiedby}
                             onChange={formik.handleChange}
-                            // disabled={isFieldsDisabled}
                             required
                         />
                         <label id='addedtimelabel' htmlFor='addedtime'>
@@ -429,7 +410,6 @@ export const Editprofile = () => {
                             name='addedtime'
                             value={formik.values.addedtime}
                             onChange={formik.handleChange}
-                            // disabled={isFieldsDisabled}
                             max={maxDate}
                             required
                         />
@@ -442,7 +422,6 @@ export const Editprofile = () => {
                             name='modifiedtime'
                             value={formik.values.modifiedtime}
                             onChange={formik.handleChange}
-                            // disabled={isFieldsDisabled}
                             max={maxDate}
                             required
                         />
@@ -488,7 +467,7 @@ export const Editprofile = () => {
                                     {formik.values.workExperience?.map((exp, index) => (
                                         <div key={index} className='work-experience-item'>
                                             <Field
-                                                id={'companyname'}
+                                                id={'companyname-1'}
                                                 name={`workExperience.${index}.companyname`}
                                                 type='text'
                                                 value={exp.companyname}
@@ -652,8 +631,8 @@ export const Editprofile = () => {
                                             <Field
                                                 // as='select'
                                                 type='text'
-                                                id='relation-ship'
-                                                name='dependantDetails.${index}.relationship'
+                                                id={`relation-ship`}
+                                                name={`dependantDetails.${index}.relationship`}
                                             >
                                                 {/* <option value=''>Select</option>
                                                 <option value='father'>Father</option>

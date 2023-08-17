@@ -12,7 +12,6 @@ export const Dashboard: React.FC = () => {
     const location = useLocation();
     const id = location.state.id;
     const disable = location.state.role;
-    console.log(disable);
     const navigate = useNavigate();
     const auth = useAuth();
 
@@ -22,7 +21,7 @@ export const Dashboard: React.FC = () => {
             .then((res) => setActiveTab(res.data))
             .catch((err) => console.log(err));
     }, []);
-
+    console.log(activeTab);
     useEffect(() => {
         axios
             .get(`admin/getusers`)
@@ -41,8 +40,14 @@ export const Dashboard: React.FC = () => {
         navigate('/signupform');
     };
     const handleEdit = () => {
-        navigate('/editprofile', {
+        navigate(`/editprofile`, {
             state: { role: disable, id: id },
+        });
+    };
+
+    const handleAdminEdit = async (id: string) => {
+        navigate(`/editprofile`, {
+            state: { id: id },
         });
     };
 
@@ -91,7 +96,9 @@ export const Dashboard: React.FC = () => {
                                             <td>{item.modified_by}</td>
                                             <td>{item.added_by}</td>
                                             <td>
-                                                <button onClick={handleEdit}>Edit data</button>
+                                                <button onClick={() => handleAdminEdit(item.employee_id)}>
+                                                    Edit data
+                                                </button>
                                             </td>
                                         </tr>
                                     ))}

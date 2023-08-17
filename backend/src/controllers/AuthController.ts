@@ -48,7 +48,12 @@ export class AuthController {
             if (token) {
                 const identified_user_email = jwt.decode(token);
                 const identified_user = await this.authService.finduser(identified_user_email);
-                res.status(200).send({ loggedIn: true, username: identified_user.username });
+                res.status(200).send({
+                    loggedIn: true,
+                    username: identified_user.username,
+                    id: identified_user.employee_id,
+                    role: identified_user.role,
+                });
             } else {
                 res.status(401).send('Unauthorized');
             }

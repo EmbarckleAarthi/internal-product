@@ -9,6 +9,7 @@ export class UserRoute {
     constructor() {
         this.router.post('/profiledata', this.userController.profileData);
         this.router.get('/getuserdata/:id', this.userController.getUserData);
+        this.router.post('/editprofile', this.userController.editProfile);
     }
 
     public getRouter(): Router {

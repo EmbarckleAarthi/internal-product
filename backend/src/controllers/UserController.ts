@@ -170,4 +170,123 @@ export class UserController {
             res.status(401).send({ msg: 'not found' });
         }
     };
+
+    public editProfile = async (req: Request, res: Response) => {
+        // console.log(req.body);
+        const dependantdetails = req.body.values.dependantDetails;
+        const educationdetails = req.body.values.educationDetails;
+
+        const workexperience = req.body.values.workExperience;
+        const {
+            employeeid,
+            firstname,
+            lastname,
+            email,
+            workphonenumber,
+            personalmobilenumber,
+            personalemailaddress,
+            address,
+            businessunit,
+            division,
+            employmenttype,
+            department,
+            employmentstatus,
+            location,
+            sourceofhire,
+            designation,
+            dateofjoining,
+            reportingmanager,
+            uan,
+            pan,
+            aadhar,
+            dateofbirth,
+            maritalstatus,
+            aboutme,
+            addedby,
+            addedtime,
+            modifiedby,
+            modifiedtime,
+        } = req.body.values;
+
+        try {
+            const basicinfoUpdate = await this.userService.basicdetailsUpdate({
+                employeeid,
+                firstname,
+                lastname,
+                email,
+                workphonenumber,
+                personalmobilenumber,
+                personalemailaddress,
+                address,
+            });
+            const workinfoUpdate = await this.userService.workinformationUpdate({
+                employeeid,
+                businessunit,
+                division,
+                employmenttype,
+                department,
+                employmentstatus,
+                location,
+                sourceofhire,
+                designation,
+                dateofjoining,
+            });
+            const hierarchyinfoUpdate = await this.userService.hierarchyinformationUpdate({
+                employeeid,
+                reportingmanager,
+            });
+
+            const dependentdetailsUpdate = await this.userService.dependentdetailsUpdate({
+                employeeid,
+                dependantdetails,
+            });
+
+            const educationDetailsUpdate = await this.userService.educationDetailsUpdate({
+                employeeid,
+                educationdetails,
+            });
+            const identityinfoUpdate = await this.userService.identityinformationUpdate({
+                employeeid,
+                uan,
+                pan,
+                aadhar,
+            });
+
+            const personaldetailsUpdate = await this.userService.personaldetailsUpdate({
+                employeeid,
+                dateofbirth,
+                maritalstatus,
+                aboutme,
+            });
+            const systemfieldsUpdate = await this.userService.systemfieldsUpdate({
+                employeeid,
+                addedby,
+                addedtime,
+                modifiedby,
+                modifiedtime,
+            });
+
+            const workexperienceUpdate = await this.userService.workexperienceUpdate({
+                employeeid,
+                workexperience,
+            });
+            if (
+                basicinfoUpdate &&
+                workinfoUpdate &&
+                hierarchyinfoUpdate &&
+                dependentdetailsUpdate &&
+                educationDetailsUpdate &&
+                identityinfoUpdate &&
+                personaldetailsUpdate &&
+                systemfieldsUpdate &&
+                workexperienceUpdate
+            ) {
+                res.send('profile data added');
+            } else {
+                res.send('cannot add profile data');
+            }
+        } catch (err) {
+            res.status(500).send({ message: 'unable to find user' });
+        }
+    };
 }

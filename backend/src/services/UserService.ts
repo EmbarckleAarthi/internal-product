@@ -318,4 +318,181 @@ export class UserService {
             });
         });
     }
+    public async basicdetailsUpdate({
+        employeeid,
+        firstname,
+        lastname,
+        email,
+        workphonenumber,
+        personalmobilenumber,
+        personalemailaddress,
+        address,
+    }): Promise<string> {
+        return new Promise((resolve, reject) => {
+            database.query(
+                `UPDATE basic_information SET employee_id= '${employeeid}'
+                 first_name='${firstname}', last_name='${lastname}',email='${email}',work_phonenumber='${workphonenumber}',
+                 personal_mobilenumber='${personalmobilenumber}',personal_email='${personalemailaddress}',address='${address}'
+                 where employee_id='${employeeid}'`,
+
+                (err) => {
+                    if (err) {
+                        reject(err);
+                    } else {
+                        resolve('data added successfully');
+                    }
+                }
+            );
+        });
+    }
+
+    public async workinformationUpdate({
+        employeeid,
+        businessunit,
+        division,
+        employmenttype,
+        department,
+        employmentstatus,
+        location,
+        sourceofhire,
+        designation,
+        dateofjoining,
+    }): Promise<string> {
+        return new Promise((resolve, reject) => {
+            database.query(
+                `UPDATE work_information SET business_unit='${businessunit}',division='${division}',
+                    employment_type='${employmenttype}',department='${department}',employment_status='${employmentstatus}',
+                    location='${location}',source_of_hire='${sourceofhire}',designation='${designation}',joining_date='${dateofjoining}'
+                     where employee_id='${employeeid}'`,
+
+                (err) => {
+                    if (err) {
+                        reject(err);
+                    } else {
+                        resolve('work information added');
+                    }
+                }
+            );
+        });
+    }
+
+    public async hierarchyinformationUpdate({ employeeid, reportingmanager }): Promise<string> {
+        return new Promise((resolve, reject) => {
+            database.query(
+                `UPDATE hierarchy_info SET reporting_manager = '${reportingmanager}' where employee_id = '${employeeid}'`,
+                (err) => {
+                    if (err) {
+                        reject(err);
+                    } else {
+                        resolve('hierarchy info added successfully');
+                    }
+                }
+            );
+        });
+    }
+
+    public async dependentdetailsUpdate({ employeeid, dependantdetails }): Promise<string[]> {
+        return Promise.all(
+            dependantdetails.map((item: { name: string; relationship: string; relationdateofbirth: string }) => {
+                new Promise((resolve, reject) => {
+                    const res = database.query(`
+                    UPDATE dependent_details SET name='${item.name}', relationship='${item.relationship}',
+                    relation_birthday='${item.relationdateofbirth}' where employee_id ='${employeeid}'`);
+                    if (res) {
+                        resolve('data inserted');
+                    } else {
+                        reject('not fulfilled');
+                    }
+                });
+            })
+        );
+    }
+
+    public async educationDetailsUpdate({ employeeid, educationdetails }): Promise<string[]> {
+        return Promise.all(
+            educationdetails.map(
+                (item: { institutename: string; degree: string; specialization: string; dateofcompletion: string }) => {
+                    new Promise((resolve, reject) => {
+                        const res = database.query(
+                            `UPDATE education_details SET institute_name = '${item.institutename}',
+                    degree='${item.degree}', specialization = '${item.specialization}',
+                    completion_date = '${item.dateofcompletion}' where employee_id = '${employeeid}'`
+                        );
+                        if (res) {
+                            resolve('data inserted');
+                        } else {
+                            reject('not fulfilled');
+                        }
+                    });
+                }
+            )
+        );
+    }
+
+    public async workexperienceUpdate({ employeeid, workexperience }): Promise<string[]> {
+        return Promise.all(
+            workexperience.map((item) => {
+                new Promise((resolve, reject) => {
+                    const res = database.query(
+                        `UPDATE work_experience SET company_name = '${item.companyname}',
+                    job_title = '${item.jobtitle}', from_date='${item.fromdate}',to_date ='${item.todate}',
+                    job_description='${item.jobdescription}'
+                    where employee_id ='${employeeid}'`
+                    );
+                    if (res) {
+                        resolve('data inserted');
+                    } else {
+                        reject('not fulfilled');
+                    }
+                });
+            })
+        );
+    }
+
+    public async identityinformationUpdate({ employeeid, uan, pan, aadhar }): Promise<string> {
+        return new Promise((resolve, reject) => {
+            database.query(
+                `UPDATE identity_info SET uan='${uan}', pan = '${pan}', aadhar = '${aadhar}' where employee_id = '${employeeid}'`,
+                (err) => {
+                    if (err) {
+                        reject(err);
+                    } else {
+                        resolve('identity info added');
+                    }
+                }
+            );
+        });
+    }
+    public async personaldetailsUpdate({ employeeid, dateofbirth, maritalstatus, aboutme }): Promise<string> {
+        return new Promise((resolve, reject) => {
+            database.query(
+                `UPDATE personal_details SET date_of_birth= '${dateofbirth}', marital_status = '${maritalstatus}', aboutme = '${aboutme}' where employee_id = '${employeeid}'`,
+
+                (err) => {
+                    if (err) {
+                        reject(err);
+                    } else {
+                        resolve('personal info added');
+                    }
+                }
+            );
+        });
+    }
+
+    public async systemfieldsUpdate({ employeeid, addedby, addedtime, modifiedby, modifiedtime }): Promise<string> {
+        return new Promise((resolve, reject) => {
+            database.query(
+                `UPDATE system_fields SET added_by = '${addedby}', added_time ='${addedtime}', modified_by = '${modifiedby}',
+                modified_time = '${modifiedtime}' where employee_id = '${employeeid}'`,
+
+                (err) => {
+                    if (err) {
+                        reject(err);
+                    } else {
+                        resolve('system fields added');
+                    }
+                }
+            );
+        });
+    }
 }

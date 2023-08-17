@@ -21,6 +21,7 @@ export const Login = () => {
             );
             return;
         }
+
         axios
             .post('/auth/login', { email, password }, { withCredentials: true })
             .then((res) => {

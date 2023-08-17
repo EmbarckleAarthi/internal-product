@@ -20,20 +20,24 @@
 .navbar{
 
     background-color: rgb(235, 231, 231);
-    height: 60px;
+    height: 85px;
+    width: 1250px;
     #editprofile-button {
-        margin-left: 50rem;
+        margin-left: 53rem;
         text-decoration: none;
         color: black;
         font-size: 25px;
+        border: none;
+        margin-top: 20px;
+        background-color: rgb(235, 231, 231);;
     }
     #logout-button{
-        margin-left: 70rem;
+        margin-left: 53rem;
         text-decoration: none;
         color: black;
         font-size: 25px;
         background-color:rgb(235, 231, 231);;
-        border: none;    
+        border: none;   
     }
    
 }
@@ -242,7 +246,8 @@
         display: flex;
         float: left;
         clear: left;
-        width: 110px;
+        font-size: large;
+        // width: 110px;
         //text-align: right;
         padding: 5px;
         margin-top: 30px;
@@ -381,6 +386,8 @@
         width: 200px;
     }
     
-
+.education-details-item{
+    justify-content: space-around;
+}
 
 }
